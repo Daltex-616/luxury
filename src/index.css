@@ -1,0 +1,39 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-text;
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.section-fade {
+  opacity: 0;
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+.glass-card {
+  @apply backdrop-blur-lg bg-white/5 border border-white/10;
+}
+.touch-action-none {
+  touch-action: none;
+}
+
+@media (hover: hover) {
+  /* Estilos específicos para dispositivos con hover */
+  .card-hover-effect:hover {
+    transform: scale(1.05);
+  }
+}
