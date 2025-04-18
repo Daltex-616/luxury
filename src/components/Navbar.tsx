@@ -1,83 +1,280 @@
-
 import { Menu, Globe } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./ui/button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false); // State for language dropdown
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
+  // Detect scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
+        behavior: "smooth",
+        block: "start",
       });
+      setTimeout(() => {
+        const rect = element.getBoundingClientRect();
+        window.scrollTo({
+          top: rect.top + window.scrollY,
+          behavior: "smooth",
+        });
+      }, 100);
       setIsOpen(false);
+    } else {
+      console.warn(`Element with ID "${id}" not found. Ensure your HTML has <section id="${id}">`);
     }
   };
 
+  // Handle language selection
+  const handleLanguageSelect = (language: string) => {
+    console.log(`Selected language: ${language}`); // Replace with actual language change logic
+    setIsLanguageOpen(false);
+  };
+
+  // Animation variants for navbar
+  const navbarVariants = {
+    initial: { y: 0, height: 64 },
+    scrolled: { y: 0, height: 80, transition: { type: "spring", stiffness: 200, damping: 20 } },
+  };
+
+  // Animation variants for menu items
+  const menuItemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.1, duration: 0.3 },
+    }),
+    scrolled: { opacity: 0.8, y: -5, transition: { duration: 0.3 } },
+  };
+
+  // Animation variants for language dropdown
+  const languageMenuVariants = {
+    hidden: { opacity: 0, scaleY: 0, transformOrigin: "top" },
+    visible: {
+      opacity: 1,
+      scaleY: 1,
+      transition: { duration: 0.2, ease: "easeInOut" },
+    },
+    exit: { opacity: 0, scaleY: 0, transition: { duration: 0.15 } },
+  };
+
+  // Mobile menu animation
+  const mobileMenuVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: {
+      opacity: 1,
+      height: "auto",
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+    exit: { opacity: 0, height: 0, transition: { duration: 0.2 } },
+  };
+
   return (
-    <nav className="fixed w-full z-50 bg-background/80 backdrop-blur-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <motion.nav
+      className={`fixed w-full z-50 font-[Playfair_Display] transition-all duration-500 ${isScrolled
+          ? "bg-black/50 shadow-[0_0_15px_rgba(255,255,255,0.2)] border-b border-white/10"
+          : "bg-black/90 backdrop-blur-xl shadow-lg border-b border-white/10"
+        }`}
+      variants={navbarVariants}
+      initial="initial"
+      animate={isScrolled ? "scrolled" : "initial"}
+    >
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-full">
+          {/* Logo Section */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full bg-[#D2C8B5]/20 flex items-center justify-center">
-              <span className="text-[#D2C8B5] text-xl font-bold">L</span>
+            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shadow-lg">
+              <img
+                src="logo.png" // Replace with your logo's path
+                alt="Luxuri Logo"
+                className="w-10 h-10 object-contain"
+              />
             </div>
-            <span className="text-2xl font-bold text-accent">Luxuri</span>
+            <span className="font-bold text-white text-3xl">Luxury</span>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <a href="#inicio" onClick={(e) => scrollToSection(e, 'inicio')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Inicio</a>
-              <a href="#servicios" onClick={(e) => scrollToSection(e, 'servicios')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Servicios</a>
-              <a href="#detalles-servicio" onClick={(e) => scrollToSection(e, 'detalles-servicio')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Detalles</a>
-              <a href="#flota" onClick={(e) => scrollToSection(e, 'flota')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Flota</a>
-              <a href="#quienes-somos" onClick={(e) => scrollToSection(e, 'quienes-somos')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Quiénes Somos</a>
-              <a href="#nosotros" onClick={(e) => scrollToSection(e, 'nosotros')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Por Qué Elegirnos</a>
-              <a href="#precios" onClick={(e) => scrollToSection(e, 'precios')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Precios</a>
-              <a href="#testimonios" onClick={(e) => scrollToSection(e, 'testimonios')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Testimonios</a>
-              <a href="#contacto" onClick={(e) => scrollToSection(e, 'contacto')} className="text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Contacto</a>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex pt-5 items-center space-x-6">
+            <div className="ml-10 flex items-baseline space-x-6">
+              {["inicio", "precios", "contacto"].map((section, index) => (
+                <motion.a
+                  key={section}
+                  href={`#${section}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(section);
+                  }}
+                  className="text-white hover:text-black px-4 py-2 font-medium text-lg transition-all duration-300 relative group bg-white/10 rounded-md"
+                  custom={index}
+                  variants={menuItemVariants}
+                  initial="hidden"
+                  animate={isScrolled ? "scrolled" : "visible"}
+                  whileHover={{ scale: 1.05, backgroundColor: "#FFFFFF", color: "#000000" }}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </motion.a>
+              ))}
+              <div className="relative">
+                <motion.div
+                  custom={3}
+                  variants={menuItemVariants}
+                  initial="hidden"
+                  animate={isScrolled ? "scrolled" : "visible"}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                    className={`text-white hover:text-black bg-white/10 hover:bg-white transition-all duration-300 rounded-full ${isScrolled ? "glow-effect" : ""
+                      }`}
+                  >
+                    <Globe size={22} />
+                  </Button>
+                </motion.div>
+                <AnimatePresence>
+                  {isLanguageOpen && (
+                    <motion.div
+                      className="absolute right-0 mt-2 w-40 bg-black/95 border border-white/10 rounded-lg shadow-lg z-50"
+                      variants={languageMenuVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      <div className="py-2">
+                        {["Español", "English"].map((lang) => (
+                          <button
+                            key={lang}
+                            onClick={() => handleLanguageSelect(lang)}
+                            className="block w-full text-left px-4 py-2 text-white hover:bg-white/10 hover:text-white text-sm transition-all duration-200"
+                          >
+                            {lang}
+                          </button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="text-text hover:text-accent hover:bg-transparent transition-colors duration-300"
-            >
-              <Globe size={20} />
-            </Button>
           </div>
-          <div className="md:hidden flex items-center space-x-2">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="text-text hover:text-accent hover:bg-transparent transition-colors duration-300"
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden flex items-center space-x-4">
+            <div className="relative">
+              <motion.div
+                custom={3}
+                variants={menuItemVariants}
+                initial="hidden"
+                animate={isScrolled ? "scrolled" : "visible"}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                  className={`text-white hover:text-black bg-white/10 hover:bg-white transition-all duration-300 rounded-full ${isScrolled ? "glow-effect" : ""
+                    }`}
+                >
+                  <Globe size={22} />
+                </Button>
+              </motion.div>
+              <AnimatePresence>
+                {isLanguageOpen && (
+                  <motion.div
+                    className="absolute right-0 top-12 w-40 bg-black/95 border border-white/10 rounded-lg shadow-lg z-50"
+                    variants={languageMenuVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                  >
+                    <div className="py-2">
+                      {["Español", "English"].map((lang) => (
+                        <button
+                          key={lang}
+                          onClick={() => handleLanguageSelect(lang)}
+                          className="block w-full text-left px-4 py-2 text-white hover:bg-white/10 hover:text-white text-sm transition-all duration-200"
+                        >
+                          {lang}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-white hover:text-black"
+              whileTap={{ scale: 0.9 }}
             >
-              <Globe size={20} />
-            </Button>
-            <button onClick={() => setIsOpen(!isOpen)} className="text-text hover:text-accent">
-              <Menu size={24} />
-            </button>
+              <motion.div
+                animate={{ rotate: isOpen ? 90 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Menu size={28} />
+              </motion.div>
+            </motion.button>
           </div>
         </div>
       </div>
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background/95">
-            <a href="#inicio" onClick={(e) => scrollToSection(e, 'inicio')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Inicio</a>
-            <a href="#servicios" onClick={(e) => scrollToSection(e, 'servicios')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Servicios</a>
-            <a href="#detalles-servicio" onClick={(e) => scrollToSection(e, 'detalles-servicio')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Detalles</a>
-            <a href="#flota" onClick={(e) => scrollToSection(e, 'flota')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Flota</a>
-            <a href="#quienes-somos" onClick={(e) => scrollToSection(e, 'quienes-somos')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Quiénes Somos</a>
-            <a href="#nosotros" onClick={(e) => scrollToSection(e, 'nosotros')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Por Qué Elegirnos</a>
-            <a href="#precios" onClick={(e) => scrollToSection(e, 'precios')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Precios</a>
-            <a href="#testimonios" onClick={(e) => scrollToSection(e, 'testimonios')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Testimonios</a>
-            <a href="#contacto" onClick={(e) => scrollToSection(e, 'contacto')} className="block text-text hover:text-accent px-3 py-2 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full">Contacto</a>
-          </div>
-        </div>
-      )}
-    </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="md:hidden bg-black/95"
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <div className="px-4 pt-4 pb-6 space-y-2">
+              {["inicio", "precios", "contacto"].map((section, index) => (
+                <motion.a
+                  key={section}
+                  href={`#${section}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(section);
+                  }}
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    scrollToSection(section);
+                  }}
+                  className="block text-white hover:text-black px-4 py-3 font-medium text-lg transition-all duration-300 relative group bg-white/10 rounded-md"
+                  custom={index}
+                  variants={menuItemVariants}
+                  initial="hidden"
+                  animate="visible"
+                  whileHover={{ scale: 1.05, backgroundColor: "#FFFFFF", color: "#000000" }}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 

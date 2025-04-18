@@ -12,6 +12,7 @@ export default {
         accent: "#E5DEFF",
         secondary: "#FDE1D3",
         text: "#F1F0FB",
+        
       },
       animation: {
         "fade-up": "fadeUp 0.5s ease-out forwards",
