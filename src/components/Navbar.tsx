@@ -1,24 +1,49 @@
 import { Menu, Globe } from "lucide-react";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Button } from "./ui/button";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false); // State for language dropdown
+// Definir tipos para las variantes de animación
+interface NavbarVariants extends Variants {
+  initial: { y: number; height: number };
+  scrolled: { y: number; height: number; transition: { type: string; stiffness: number; damping: number } };
+}
 
-  // Detect scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+interface MenuItemVariants extends Variants {
+  hidden: { opacity: number; y: number };
+  visible: (i: number) => { opacity: number; y: number; transition: { delay: number; duration: number } };
+  scrolled: { opacity: number; y: number; transition: { duration: number } };
+}
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+interface LanguageMenuVariants extends Variants {
+  hidden: { opacity: number; scaleY: number; transformOrigin: string };
+  visible: { opacity: number; scaleY: number; transition: { duration: number; ease: string } };
+  exit: { opacity: number; scaleY: number; transition: { duration: number } };
+}
+
+interface MobileMenuVariants extends Variants {
+  hidden: { opacity: number; height: number };
+  visible: { opacity: number; height: string; transition: { duration: number; ease: string } };
+  exit: { opacity: number; height: number; transition: { duration: number } };
+}
+
+const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState<boolean>(false);
+
+  // Memoizar la función de scroll
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 50);
   }, []);
 
-  const scrollToSection = (id: string) => {
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  // Memoizar la función de scrollToSection
+  const scrollToSection = useCallback((id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({
@@ -33,25 +58,29 @@ const Navbar = () => {
         });
       }, 100);
       setIsOpen(false);
-    } else {
-      console.warn(`Element with ID "${id}" not found. Ensure your HTML has <section id="${id}">`);
     }
-  };
+  }, []);
 
-  // Handle language selection
-  const handleLanguageSelect = (language: string) => {
-    console.log(`Selected language: ${language}`); // Replace with actual language change logic
+  const handleLanguageSelect = useCallback((language: string) => {
+    console.log(`Selected language: ${language}`);
     setIsLanguageOpen(false);
-  };
+  }, []);
 
-  // Animation variants for navbar
-  const navbarVariants = {
+  // Animation variants
+  const navbarVariants: NavbarVariants = {
     initial: { y: 0, height: 64 },
-    scrolled: { y: 0, height: 80, transition: { type: "spring", stiffness: 200, damping: 20 } },
+    scrolled: {
+      y: 0,
+      height: 80,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+      },
+    },
   };
 
-  // Animation variants for menu items
-  const menuItemVariants = {
+  const menuItemVariants: MenuItemVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: (i: number) => ({
       opacity: 1,
@@ -61,8 +90,7 @@ const Navbar = () => {
     scrolled: { opacity: 0.8, y: -5, transition: { duration: 0.3 } },
   };
 
-  // Animation variants for language dropdown
-  const languageMenuVariants = {
+  const languageMenuVariants: LanguageMenuVariants = {
     hidden: { opacity: 0, scaleY: 0, transformOrigin: "top" },
     visible: {
       opacity: 1,
@@ -72,8 +100,7 @@ const Navbar = () => {
     exit: { opacity: 0, scaleY: 0, transition: { duration: 0.15 } },
   };
 
-  // Mobile menu animation
-  const mobileMenuVariants = {
+  const mobileMenuVariants: MobileMenuVariants = {
     hidden: { opacity: 0, height: 0 },
     visible: {
       opacity: 1,
@@ -85,10 +112,11 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`fixed w-full z-50 font-[Playfair_Display] transition-all duration-500 ${isScrolled
+      className={`fixed w-full z-50 font-[Playfair_Display] transition-all duration-500 ${
+        isScrolled
           ? "bg-black/50 shadow-[0_0_15px_rgba(255,255,255,0.2)] border-b border-white/10"
           : "bg-black/90 backdrop-blur-xl shadow-lg border-b border-white/10"
-        }`}
+      }`}
       variants={navbarVariants}
       initial="initial"
       animate={isScrolled ? "scrolled" : "initial"}
@@ -99,7 +127,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shadow-lg">
               <img
-                src="logo.png" // Replace with your logo's path
+                src="logo.png"
                 alt="Luxuri Logo"
                 className="w-10 h-10 object-contain"
               />
@@ -114,7 +142,7 @@ const Navbar = () => {
                 <motion.a
                   key={section}
                   href={`#${section}`}
-                  onClick={(e) => {
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     e.preventDefault();
                     scrollToSection(section);
                   }}
@@ -142,8 +170,7 @@ const Navbar = () => {
                     variant="ghost"
                     size="icon"
                     onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                    className={`text-white hover:text-black bg-white/10 hover:bg-white transition-all duration-300 rounded-full ${isScrolled ? "glow-effect" : ""
-                      }`}
+                    className="text-white hover:text-black bg-white/10 hover:bg-white transition-all duration-300 rounded-full glow-effect"
                   >
                     <Globe size={22} />
                   </Button>
@@ -190,8 +217,7 @@ const Navbar = () => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                  className={`text-white hover:text-black bg-white/10 hover:bg-white transition-all duration-300 rounded-full ${isScrolled ? "glow-effect" : ""
-                    }`}
+                  className="text-white hover:text-black bg-white/10 hover:bg-white transition-all duration-300 rounded-full glow-effect"
                 >
                   <Globe size={22} />
                 </Button>
@@ -220,18 +246,19 @@ const Navbar = () => {
                 )}
               </AnimatePresence>
             </div>
-            <motion.button
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-white hover:text-black"
-              whileTap={{ scale: 0.9 }}
             >
               <motion.div
+                initial={{ rotate: 0 }}
                 animate={{ rotate: isOpen ? 90 : 0 }}
                 transition={{ duration: 0.3 }}
+                className="text-white hover:text-black"
               >
                 <Menu size={28} />
               </motion.div>
-            </motion.button>
+            </button>
           </div>
         </div>
       </div>
@@ -251,11 +278,11 @@ const Navbar = () => {
                 <motion.a
                   key={section}
                   href={`#${section}`}
-                  onClick={(e) => {
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     e.preventDefault();
                     scrollToSection(section);
                   }}
-                  onTouchStart={(e) => {
+                  onTouchStart={(e: React.TouchEvent<HTMLAnchorElement>) => {
                     e.preventDefault();
                     scrollToSection(section);
                   }}
