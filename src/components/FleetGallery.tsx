@@ -14,7 +14,7 @@ const fleetData: Vehicle[] = [
   {
     id: 1,
     name: "Sedan Ejecutivo",
-    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070",
+    image: "https://tn.com.ar/resizer/v2/el-auto-mas-planchado-del-mundo-HCSXVGHAFVEU5FJRQQCH2EETQI.JPG?auth=faedad68e897e3f506c7cf87ea77986b29f9875b4b7111ff90c3878e98bc474a&width=767",
     specs: "4 pasajeros • A/C • WiFi",
     description: "Perfecto para viajes ejecutivos y corporativos"
   },
@@ -35,7 +35,7 @@ const fleetData: Vehicle[] = [
   {
     id: 4,
     name: "Limusina Ejecutiva",
-    image: "https://tn.com.ar/resizer/v2/el-auto-mas-planchado-del-mundo-HCSXVGHAFVEU5FJRQQCH2EETQI.JPG?auth=faedad68e897e3f506c7cf87ea77986b29f9875b4b7111ff90c3878e98bc474a&width=767",
+    image: "https://media.discordapp.net/attachments/467431736045862992/1363380669887025152/image.png?ex=6805d2b2&is=68048132&hm=d57bde42166336cc78cf6f590065a116bb19862f603dcf2311947181ce50ae9e&=&format=webp&quality=lossless",
     specs: "6 pasajeros • A/C • Bar • WiFi Premium",
     description: "La máxima expresión del lujo y confort"
   },
