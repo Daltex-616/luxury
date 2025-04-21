@@ -1,64 +1,44 @@
-🚖 Luxury Transfer - Transporte Ejecutivo Premium
-Banner
+# 🚖 Luxury Transfer - Transporte Ejecutivo Premium  
 
-Luxury Transfer es una página web moderna y elegante diseñada para ofrecer servicios de transporte ejecutivo de alta gama. Con un diseño sofisticado, animaciones fluidas y un formulario de contacto funcional, esta plataforma está optimizada para convertir visitantes en clientes.
+<p align="center">
+  <img src="https://via.placeholder.com/1200x400/1a1a1a/ffffff?text=Luxury+Transfer+-+Transporte+Ejecutivo" alt="Banner Luxury Transfer">
+</p>
 
-✨ Características Principales
-✅ Diseño Responsivo – Adaptable a móviles, tablets y desktop.
-✅ Formulario de Contacto Inteligente – Validación en tiempo real y envío seguro con EmailJS.
-✅ Efectos Visuales Premium – Transiciones suaves, gradientes y estilos modernos.
-✅ SEO Optimizado – Estructura semántica para mejor posicionamiento.
-✅ Alertas Interactivas – Notificaciones de éxito/error al enviar mensajes.
+**Luxury Transfer** es una solución web premium para servicios de transporte ejecutivo, diseñada con tecnología moderna y enfoque en la experiencia del usuario.
 
-🛠 Tecnologías Utilizadas
-Frontend	Backend	Herramientas
-React	EmailJS	Vite
-TypeScript		TailwindCSS
-🚀 Instalación y Uso
-Clona el repositorio:
+## ✨ Características Principales  
 
-bash
+✅ **Diseño Responsivo** - Perfecto en cualquier dispositivo  
+✅ **Formulario Inteligente** - Validación en tiempo real + EmailJS  
+✅ **Efectos Visuales** - Animaciones fluidas y diseño elegante  
+✅ **SEO Optimizado** - Mejor posicionamiento en buscadores  
+✅ **Notificaciones** - Feedback claro al enviar mensajes  
+
+## 🛠 Stack Tecnológico  
+
+<div align="center">
+
+| Frontend              | Backend              | Herramientas         |
+|-----------------------|----------------------|----------------------|
+| ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react) | ![EmailJS](https://img.shields.io/badge/EmailJS-FF6B6B?style=for-the-badge&logo=mail.ru) | ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite) |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript) |  | ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css) |
+
+</div>
+
+## 🚀 Cómo Empezar
+
+```bash
+# 1. Clonar repositorio
 git clone https://github.com/tu-usuario/luxury-transfer.git
 cd luxury-transfer
-Instala dependencias:
 
-bash
+# 2. Instalar dependencias
 npm install
-Configura EmailJS:
 
-Crea un archivo .env y añade tus credenciales:
+# 3. Configurar variables de entorno
+echo "VITE_EMAILJS_SERVICE_ID=tu_service_id" > .env
+echo "VITE_EMAILJS_TEMPLATE_ID=tu_template_id" >> .env
+echo "VITE_EMAILJS_PUBLIC_KEY=tu_public_key" >> .env
 
-env
-VITE_EMAILJS_SERVICE_ID=tu_service_id
-VITE_EMAILJS_TEMPLATE_ID=tu_template_id
-VITE_EMAILJS_PUBLIC_KEY=tu_public_key
-Inicia el servidor de desarrollo:
-
-bash
+# 4. Iniciar servidor de desarrollo
 npm run dev
-¡Listo! Abre tu navegador en:
-🔗 http://localhost:5173
-
-📸 Capturas de Pantalla
-Inicio	Formulario	Mobile
-Desktop	Form	Mobile
-🌟 Demo en Vivo
-🔗 https://luxury-transfer-ejecutivo.vercel.app (ejemplo)
-
-📄 Licencia
-MIT License © 2023 [Tu Nombre]
-
-🤝 Contribuciones
-¡Las sugerencias son bienvenidas! Abre un issue o envía un PR.
-
-📌 ¿Por qué elegir este proyecto?
-Enfoque en Experiencia de Usuario: Diseño intuitivo y profesional.
-
-Rendimiento Optimizado: Carga rápida gracias a Vite + React.
-
-Fácil Personalización: Cambia colores, textos y imágenes en minutos.
-
-<p align="center"> ✉️ **Contacto**: <a href="mailto:contacto@luxurytransfer.com">contacto@luxurytransfer.com</a> </p>
-Footer
-
-✨ Convierte cada viaje en una experiencia de lujo con Luxury Transfer. ✨
