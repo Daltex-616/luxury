@@ -8,9 +8,65 @@ const Contacto = () => {
     message: '',
     type: 'success' as 'success' | 'error'
   });
+  const [formErrors, setFormErrors] = useState({
+    user_name: false,
+    user_lastname: false,
+    user_email: false,
+    message: false
+  });
+
+  const validateForm = () => {
+    if (!form.current) return false;
+
+    const inputs = form.current.elements;
+    let isValid = true;
+    const newErrors = {
+      user_name: false,
+      user_lastname: false,
+      user_email: false,
+      message: false
+    };
+
+    // Validar cada campo
+    const nameInput = inputs.namedItem('user_name') as HTMLInputElement;
+    if (!nameInput.value.trim()) {
+      newErrors.user_name = true;
+      isValid = false;
+    }
+
+    const lastnameInput = inputs.namedItem('user_lastname') as HTMLInputElement;
+    if (!lastnameInput.value.trim()) {
+      newErrors.user_lastname = true;
+      isValid = false;
+    }
+
+    const emailInput = inputs.namedItem('user_email') as HTMLInputElement;
+    if (!emailInput.value.trim() || !/^\S+@\S+\.\S+$/.test(emailInput.value)) {
+      newErrors.user_email = true;
+      isValid = false;
+    }
+
+    const messageInput = inputs.namedItem('message') as HTMLTextAreaElement;
+    if (!messageInput.value.trim()) {
+      newErrors.message = true;
+      isValid = false;
+    }
+
+    setFormErrors(newErrors);
+    return isValid;
+  };
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      setAlert({
+        show: true,
+        message: 'Por favor completa todos los campos correctamente.',
+        type: 'error'
+      });
+      return;
+    }
 
     if (form.current) {
       emailjs.sendForm(
@@ -40,6 +96,13 @@ const Contacto = () => {
     setAlert(prev => ({ ...prev, show: false }));
   };
 
+  // Función para manejar el cambio en los inputs y limpiar el error
+  const handleInputChange = (field: keyof typeof formErrors) => {
+    if (formErrors[field]) {
+      setFormErrors(prev => ({ ...prev, [field]: false }));
+    }
+  };
+
   return (
     <section id="contacto" className="py-24 px-6 bg-gradient-to-b from-gray-900/10 to-black/50 section-fade">
       <div className="max-w-4xl mx-auto">
@@ -64,11 +127,15 @@ const Contacto = () => {
                 name="user_name"
                 placeholder=" "
                 required
-                className="w-full p-4 rounded-lg bg-gray-900/80 border border-gray-700/50 focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent"
+                onChange={() => handleInputChange('user_name')}
+                className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_name ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
               />
               <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
                 Nombre
               </span>
+              {formErrors.user_name && (
+                <p className="mt-1 text-sm text-red-500">Este campo es requerido</p>
+              )}
             </div>
 
             {/* Apellido */}
@@ -79,11 +146,15 @@ const Contacto = () => {
                 name="user_lastname"
                 placeholder=" "
                 required
-                className="w-full p-4 rounded-lg bg-gray-900/80 border border-gray-700/50 focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent"
+                onChange={() => handleInputChange('user_lastname')}
+                className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_lastname ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
               />
               <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
                 Apellido
               </span>
+              {formErrors.user_lastname && (
+                <p className="mt-1 text-sm text-red-500">Este campo es requerido</p>
+              )}
             </div>
           </div>
 
@@ -95,11 +166,19 @@ const Contacto = () => {
               name="user_email"
               placeholder=" "
               required
-              className="w-full p-4 rounded-lg bg-gray-900/80 border border-gray-700/50 focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent"
+              onChange={() => handleInputChange('user_email')}
+              className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_email ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
             />
             <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
               Email
             </span>
+            {formErrors.user_email && (
+              <p className="mt-1 text-sm text-red-500">
+                {form.current && !(form.current.elements.namedItem('user_email') as HTMLInputElement)?.value.trim() 
+                  ? 'Este campo es requerido' 
+                  : 'Por favor ingresa un email válido'}
+              </p>
+            )}
           </div>
 
           {/* Mensaje */}
@@ -110,11 +189,15 @@ const Contacto = () => {
               placeholder=" "
               rows={5}
               required
-              className="w-full p-4 rounded-lg bg-gray-900/80 border border-gray-700/50 focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent"
+              onChange={() => handleInputChange('message')}
+              className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.message ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
             ></textarea>
             <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
               Tu mensaje
             </span>
+            {formErrors.message && (
+              <p className="mt-1 text-sm text-red-500">Este campo es requerido</p>
+            )}
           </div>
 
           {/* Botón */}
@@ -175,4 +258,4 @@ const Contacto = () => {
   );
 };
 
-export default Contacto
+export default Contacto;
