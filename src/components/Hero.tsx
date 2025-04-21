@@ -6,10 +6,10 @@ const Hero = () => {
     <section id="inicio" className="relative h-screen parallax bg-[url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070')] text-center flex items-center justify-center">
       <div className="absolute inset-0 bg-background/70 backdrop-blur-sm"></div>
       <div className="relative z-10 max-w-4xl mx-auto px-4">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
           Transporte Premium a Tu Alcance
         </h1>
-        <p className="text-xl md:text-2xl mb-8 text-secondary animate-fade-up">
+        <p className="text-xl md:text-1xl mb-8 text-secondary animate-fade-up">
           Servicio de transporte exclusivo con los más altos estándares de calidad
         </p>
         <a href="#contacto" className="inline-block bg-accent text-background px-8 py-3 rounded-full text-lg font-semibold hover:bg-secondary transition-colors">

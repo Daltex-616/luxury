@@ -1,73 +1,64 @@
-# Welcome to your Lovable project
+🚖 Luxury Transfer - Transporte Ejecutivo Premium
+Banner
 
-## Project info
+Luxury Transfer es una página web moderna y elegante diseñada para ofrecer servicios de transporte ejecutivo de alta gama. Con un diseño sofisticado, animaciones fluidas y un formulario de contacto funcional, esta plataforma está optimizada para convertir visitantes en clientes.
 
-**URL**: https://lovable.dev/projects/264b2da9-d133-4193-b17f-54b0edf1e37d
+✨ Características Principales
+✅ Diseño Responsivo – Adaptable a móviles, tablets y desktop.
+✅ Formulario de Contacto Inteligente – Validación en tiempo real y envío seguro con EmailJS.
+✅ Efectos Visuales Premium – Transiciones suaves, gradientes y estilos modernos.
+✅ SEO Optimizado – Estructura semántica para mejor posicionamiento.
+✅ Alertas Interactivas – Notificaciones de éxito/error al enviar mensajes.
 
-## How can I edit this code?
+🛠 Tecnologías Utilizadas
+Frontend	Backend	Herramientas
+React	EmailJS	Vite
+TypeScript		TailwindCSS
+🚀 Instalación y Uso
+Clona el repositorio:
 
-There are several ways of editing your application.
+bash
+git clone https://github.com/tu-usuario/luxury-transfer.git
+cd luxury-transfer
+Instala dependencias:
 
-**Use Lovable**
+bash
+npm install
+Configura EmailJS:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/264b2da9-d133-4193-b17f-54b0edf1e37d) and start prompting.
+Crea un archivo .env y añade tus credenciales:
 
-Changes made via Lovable will be committed automatically to this repo.
+env
+VITE_EMAILJS_SERVICE_ID=tu_service_id
+VITE_EMAILJS_TEMPLATE_ID=tu_template_id
+VITE_EMAILJS_PUBLIC_KEY=tu_public_key
+Inicia el servidor de desarrollo:
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+bash
 npm run dev
-```
+¡Listo! Abre tu navegador en:
+🔗 http://localhost:5173
 
-**Edit a file directly in GitHub**
+📸 Capturas de Pantalla
+Inicio	Formulario	Mobile
+Desktop	Form	Mobile
+🌟 Demo en Vivo
+🔗 https://luxury-transfer-ejecutivo.vercel.app (ejemplo)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+📄 Licencia
+MIT License © 2023 [Tu Nombre]
 
-**Use GitHub Codespaces**
+🤝 Contribuciones
+¡Las sugerencias son bienvenidas! Abre un issue o envía un PR.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+📌 ¿Por qué elegir este proyecto?
+Enfoque en Experiencia de Usuario: Diseño intuitivo y profesional.
 
-## What technologies are used for this project?
+Rendimiento Optimizado: Carga rápida gracias a Vite + React.
 
-This project is built with:
+Fácil Personalización: Cambia colores, textos y imágenes en minutos.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+<p align="center"> ✉️ **Contacto**: <a href="mailto:contacto@luxurytransfer.com">contacto@luxurytransfer.com</a> </p>
+Footer
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/264b2da9-d133-4193-b17f-54b0edf1e37d) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+✨ Convierte cada viaje en una experiencia de lujo con Luxury Transfer. ✨
