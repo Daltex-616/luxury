@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             {/* Logo o Branding */}
             <div className="flex flex-col items-center md:items-start">
-              <h3 className="text-2xl font-bold text-accent tracking-tight">Luxuri</h3>
+              <h3 className="text-2xl font-bold text-accent tracking-tight">Luxury</h3>
               <p className="mt-2 text-text/70 text-sm">Traslados de lujo con estilo y confort.</p>
             </div>
 
@@ -49,11 +49,11 @@ const Footer = () => {
             {/* Enlaces adicionales */}
             <div className="flex flex-col items-center md:items-end gap-2">
               <div className="flex gap-4">
-                <a href="/about" className="text-text/60 hover:text-accent transition-colors text-sm">Sobre Nosotros</a>
+                <a href="/about" className="text-text/60 hover:text-accent transition-colors text-sm">Preguntas frecuentes</a>
                 <a href="/contact" className="text-text/60 hover:text-accent transition-colors text-sm">Contacto</a>
                 <a href="/terms" className="text-text/60 hover:text-accent transition-colors text-sm">Términos</a>
               </div>
-              <p className="text-text/50 text-sm mt-2">© 2025 Luxuri. Todos los derechos reservados.</p>
+              <p className="text-text/50 text-sm mt-2">© 2025 Luxury. Todos los derechos reservados.</p>
             </div>
           </div>
         </div>

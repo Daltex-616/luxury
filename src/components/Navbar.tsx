@@ -185,7 +185,7 @@ const Navbar: React.FC = () => {
                       exit="exit"
                     >
                       <div className="py-2">
-                        {["Español", "English"].map((lang) => (
+                        {["Español", "English","Português"].map((lang) => (
                           <button
                             key={lang}
                             onClick={() => handleLanguageSelect(lang)}
@@ -232,7 +232,7 @@ const Navbar: React.FC = () => {
                     exit="exit"
                   >
                     <div className="py-2">
-                      {["Español", "English"].map((lang) => (
+                      {["Español", "English","Português"].map((lang) => (
                         <button
                           key={lang}
                           onClick={() => handleLanguageSelect(lang)}
