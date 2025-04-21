@@ -1,26 +1,43 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const Contacto = () => {
   const form = useRef<HTMLFormElement>(null);
+  const [alert, setAlert] = useState({
+    show: false,
+    message: '',
+    type: 'success' as 'success' | 'error'
+  });
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (form.current) {
       emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID, // ← Corregido (una "D")
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
         .then((result) => {
-          alert('¡Gracias por tu mensaje! Te responderé pronto. - Daltex Federico Zamora');
+          setAlert({
+            show: true,
+            message: '¡Gracias por tu mensaje! Te responderé pronto. - Luxry Transfer',
+            type: 'success'
+          });
           if (form.current) form.current.reset();
         }, (error) => {
-          alert('Error al enviar. Por favor intenta nuevamente.');
+          setAlert({
+            show: true,
+            message: 'Error al enviar. Por favor intenta nuevamente.',
+            type: 'error'
+          });
         });
     }
+  };
+
+  const closeAlert = () => {
+    setAlert(prev => ({ ...prev, show: false }));
   };
 
   return (
@@ -108,9 +125,54 @@ const Contacto = () => {
             Enviar Mensaje
           </button>
         </form>
+
+        {/* Modal de Alerta */}
+        {alert.show && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div 
+              className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" 
+              onClick={closeAlert}
+            />
+            
+            <div className={`relative z-10 w-full max-w-md rounded-xl overflow-hidden transition-all transform animate-slide-up`}>
+              <div className={`p-6 ${alert.type === 'success' ? 'bg-gray-900/95 border-yellow-500' : 'bg-red-900/90 border-red-700'} border rounded-xl backdrop-blur-sm`}>
+                <div className="flex items-start">
+                  <div className={`flex-shrink-0 p-2 rounded-full ${alert.type === 'success' ? 'bg-yellow-500/20' : 'bg-red-700/20'}`}>
+                    {alert.type === 'success' ? (
+                      <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
+                  </div>
+                  <div className="ml-4">
+                    <h3 className={`text-lg font-medium ${alert.type === 'success' ? 'text-yellow-500' : 'text-red-300'}`}>
+                      {alert.type === 'success' ? 'Éxito' : 'Error'}
+                    </h3>
+                    <div className="mt-2 text-sm text-gray-300">
+                      <p>{alert.message}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-5 flex justify-end">
+                  <button
+                    type="button"
+                    className={`px-4 py-2 rounded-md text-sm font-medium ${alert.type === 'success' ? 'text-yellow-500 hover:bg-yellow-500/10' : 'text-red-300 hover:bg-red-800/50'} transition-colors`}
+                    onClick={closeAlert}
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
-export default Contacto;
+export default Contacto
