@@ -25,8 +25,8 @@
     "pt": "Portuguese"
   },
   "hero": {
-    "title": "Premium Transportation at Your Reach",
-    "subtitle": "Exclusive transport service with the highest quality standards",
+    "title": "Premium Transportation within Your Reach",
+    "subtitle": "Exclusive transportation services with the highest quality standards",
     "cta_button": "Book Now"
   },
  "services": {
@@ -99,7 +99,7 @@
     "description2": "We stand out for our personalized attention, dedication, and exclusive high-end vehicles that guarantee unmatched luxury and comfort in transportation."
   },
   "why_us": {
-    "title": "Why Choose Us",
+    "title": "Why Should You Choose Us?",
     "stats": {
       "clients": {
         "suffix": "+",
@@ -141,11 +141,11 @@
       "hourly_service": "$40.000",
       "waiting_hour": "$20.000"
     },
-    "disclaimer": "Reference prices subject to change according to each requirement."
+    "disclaimer": "Reference prices subject to change according to travel specific requirements"
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Do you have any questions? Write to us and we'll respond personally.",
+    "subtitle": "Do you have any questions? Write to us and we'll personally respond.",
     "form": {
       "first_name": "First Name",
       "last_name": "Last Name",
@@ -171,5 +171,8 @@
   "faq": "FAQ",
   "terms": "Terms",
   "rights": "All rights reserved"
+},
+"reviews":{
+  "title":"Reviews"
 }
 }
