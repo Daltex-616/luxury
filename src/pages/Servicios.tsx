@@ -1,47 +1,48 @@
-import React from 'react'
-import { Car, Clock, Shield, Star, Instagram, MessageSquare, Plane, Map, DollarSign, Smartphone } from "lucide-react";
+import React from 'react';
+import { Car, Plane, Map } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const Servicios = () => {
-    return(
-        <section id="detalles-servicio" className="py-20 px-4 bg-[#1A1F2C] text-white section-fade">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-1 gap-16">
-            {/* Traslados a Aeropuertos */}
-            <div className="text-center">
-              <h2 className="text-4xl font-bold mb-6">Traslados a Aeropuertos y Terminales</h2>
-              <p className="text-lg text-center max-w-3xl mx-auto text-[#D2C8B5]/80">
-                Recepción y traslado premium hacia y desde aeropuertos y terminales, con seguimiento en tiempo real para máxima eficiencia.
-              </p>
-              <div className="flex justify-center mt-8">
-                <Plane className="w-12 h-12 text-[#D2C8B5]" />
-              </div>
-            </div>
+  const { t } = useTranslation();
 
-            {/* Servicios de Media y Larga Distancia */}
-            <div className="text-center">
-              <h2 className="text-4xl font-bold mb-6">Servicios de Media y Larga Distancia</h2>
-              <p className="text-lg text-center max-w-3xl mx-auto text-[#D2C8B5]/80">
-                Viajes ejecutivos con la comodidad y seguridad que su empresa necesita, optimizando tiempos y garantizando un trayecto sin preocupaciones.
-              </p>
-              <div className="flex justify-center mt-8">
-                <Car className="w-12 h-12 text-[#D2C8B5]" />
-              </div>
-            </div>
+  const serviceCategories = [
+    {
+      titleKey: 'services.categories.airport.title',
+      descriptionKey: 'services.categories.airport.description',
+      icon: <Plane className="w-12 h-12 text-[#D2C8B5]" />
+    },
+    {
+      titleKey: 'services.categories.long_distance.title',
+      descriptionKey: 'services.categories.long_distance.description',
+      icon: <Car className="w-12 h-12 text-[#D2C8B5]" />
+    },
+    {
+      titleKey: 'services.categories.international.title',
+      descriptionKey: 'services.categories.international.description',
+      icon: <Map className="w-12 h-12 text-[#D2C8B5]" />
+    }
+  ];
 
-            {/* Traslados a Provincias */}
-            <div className="text-center">
-              <h2 className="text-4xl font-bold mb-6">Traslados a Provincias y Fuera de Argentina</h2>
+  return (
+    <section id={t('nav.service_details_id')} className="py-20 px-4 bg-[#1A1F2C] text-white section-fade">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-16">{t('services.title')}</h2>
+        <div className="grid md:grid-cols-1 gap-16">
+          {serviceCategories.map((category, index) => (
+            <div key={index} className="text-center">
+              <h3 className="text-4xl font-bold mb-6">{t(category.titleKey)}</h3>
               <p className="text-lg text-center max-w-3xl mx-auto text-[#D2C8B5]/80">
-                Expanda sus posibilidades con nuestro servicio de transporte internacional y a distintas provincias, asegurando un viaje de lujo sin fronteras.
+                {t(category.descriptionKey)}
               </p>
               <div className="flex justify-center mt-8">
-                <Map className="w-12 h-12 text-[#D2C8B5]" />
+                {category.icon}
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      </section>
-    )
-}
+      </div>
+    </section>
+  );
+};
 
-export default Servicios
+export default Servicios;

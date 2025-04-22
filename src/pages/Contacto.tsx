@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { useTranslation } from 'react-i18next';
 
 const Contacto = () => {
+  const { t } = useTranslation();
   const form = useRef<HTMLFormElement>(null);
   const [alert, setAlert] = useState({
     show: false,
@@ -62,7 +64,7 @@ const Contacto = () => {
     if (!validateForm()) {
       setAlert({
         show: true,
-        message: 'Por favor completa todos los campos correctamente.',
+        message: t('contact.form_validation_error'),
         type: 'error'
       });
       return;
@@ -78,14 +80,14 @@ const Contacto = () => {
         .then((result) => {
           setAlert({
             show: true,
-            message: '¡Gracias por tu mensaje! Te responderé pronto. - Luxry Transfer',
+            message: t('contact.success_message'),
             type: 'success'
           });
           if (form.current) form.current.reset();
         }, (error) => {
           setAlert({
             show: true,
-            message: 'Error al enviar. Por favor intenta nuevamente.',
+            message: t('contact.error_message'),
             type: 'error'
           });
         });
@@ -96,7 +98,6 @@ const Contacto = () => {
     setAlert(prev => ({ ...prev, show: false }));
   };
 
-  // Función para manejar el cambio en los inputs y limpiar el error
   const handleInputChange = (field: keyof typeof formErrors) => {
     if (formErrors[field]) {
       setFormErrors(prev => ({ ...prev, [field]: false }));
@@ -104,15 +105,15 @@ const Contacto = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 px-6 bg-gradient-to-b from-gray-900/10 to-black/50 section-fade">
+    <section id={t('nav.contact_id')} className="py-24 px-6 bg-gradient-to-b from-gray-900/10 to-black/50 section-fade">
       <div className="max-w-4xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            Contáctame
+            {t('contact.title')}
           </h2>
           <p className="mt-4 text-gray-400 text-lg max-w-2xl mx-auto">
-            ¿Tienes alguna pregunta? Escríbeme y te responderé personalmente.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -131,10 +132,10 @@ const Contacto = () => {
                 className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_name ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
               />
               <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
-                Nombre
+                {t('contact.form.first_name')}
               </span>
               {formErrors.user_name && (
-                <p className="mt-1 text-sm text-red-500">Este campo es requerido</p>
+                <p className="mt-1 text-sm text-red-500">{t('contact.form_errors.required_field')}</p>
               )}
             </div>
 
@@ -150,10 +151,10 @@ const Contacto = () => {
                 className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_lastname ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
               />
               <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
-                Apellido
+                {t('contact.form.last_name')}
               </span>
               {formErrors.user_lastname && (
-                <p className="mt-1 text-sm text-red-500">Este campo es requerido</p>
+                <p className="mt-1 text-sm text-red-500">{t('contact.form_errors.required_field')}</p>
               )}
             </div>
           </div>
@@ -170,13 +171,13 @@ const Contacto = () => {
               className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_email ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
             />
             <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
-              Email
+              {t('contact.form.email')}
             </span>
             {formErrors.user_email && (
               <p className="mt-1 text-sm text-red-500">
                 {form.current && !(form.current.elements.namedItem('user_email') as HTMLInputElement)?.value.trim() 
-                  ? 'Este campo es requerido' 
-                  : 'Por favor ingresa un email válido'}
+                  ? t('contact.form_errors.required_field')
+                  : t('contact.form_errors.invalid_email')}
               </p>
             )}
           </div>
@@ -193,10 +194,10 @@ const Contacto = () => {
               className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.message ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
             ></textarea>
             <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
-              Tu mensaje
+              {t('contact.form.message')}
             </span>
             {formErrors.message && (
-              <p className="mt-1 text-sm text-red-500">Este campo es requerido</p>
+              <p className="mt-1 text-sm text-red-500">{t('contact.form_errors.required_field')}</p>
             )}
           </div>
 
@@ -205,7 +206,7 @@ const Contacto = () => {
             type="submit"
             className="w-full bg-white text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
           >
-            Enviar Mensaje
+            {t('contact.form.submit_button')}
           </button>
         </form>
 
@@ -233,7 +234,7 @@ const Contacto = () => {
                   </div>
                   <div className="ml-4">
                     <h3 className={`text-lg font-medium ${alert.type === 'success' ? 'text-yellow-500' : 'text-red-300'}`}>
-                      {alert.type === 'success' ? 'Éxito' : 'Error'}
+                      {alert.type === 'success' ? t('contact.alerts.success') : t('contact.alerts.error')}
                     </h3>
                     <div className="mt-2 text-sm text-gray-300">
                       <p>{alert.message}</p>
@@ -246,7 +247,7 @@ const Contacto = () => {
                     className={`px-4 py-2 rounded-md text-sm font-medium ${alert.type === 'success' ? 'text-yellow-500 hover:bg-yellow-500/10' : 'text-red-300 hover:bg-red-800/50'} transition-colors`}
                     onClick={closeAlert}
                   >
-                    Cerrar
+                    {t('contact.alerts.close_button')}
                   </button>
                 </div>
               </div>

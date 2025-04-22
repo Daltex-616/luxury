@@ -1,0 +1,175 @@
+{
+  "brand": {
+    "name": "Luxury"
+  },
+  "nav": {
+    "home": "Inicio",
+    "pricing": "Precios",
+    "contact": "Contacto",
+    "language_selector": "Seleccionar idioma",
+    "menu_toggle": "Menú",
+    "logo_alt": "Logo de Luxury Transfer",
+    "home_id": "inicio",
+    "contact_id": "contacto",
+    "services_id": "servicios",
+    "service_details_id": "detalles-servicio",
+    "fleet_id": "flota",
+    "about_id": "quienes-somos",
+    "why_us_id": "nosotros",
+    "pricing_id": "precios",
+    "contact_form_id": "contacto_form"
+  },
+  "languages": {
+    "en": "Inglés",
+    "es": "Español",
+    "pt": "Portugués"
+  },
+  "hero": {
+    "title": "Transporte Premium a Tu Alcance",
+    "subtitle": "Servicio de transporte exclusivo con los más altos estándares de calidad",
+    "cta_button": "Reserva Ahora"
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "items": {
+      "executive_transport": {
+        "title": "Transporte Ejecutivo",
+        "description": "Vehículos de lujo con choferes profesionales"
+      },
+      "24_7_service": {
+        "title": "Servicio 24/7",
+        "description": "Disponibles cuando nos necesites"
+      },
+      "max_security": {
+        "title": "Máxima Seguridad",
+        "description": "Tu seguridad es nuestra prioridad"
+      }
+    },
+    "categories": {
+      "airport": {
+        "title": "Traslados a Aeropuertos y Terminales",
+        "description": "Recepción y traslado premium hacia y desde aeropuertos y terminales, con seguimiento en tiempo real para máxima eficiencia."
+      },
+      "long_distance": {
+        "title": "Servicios de Media y Larga Distancia",
+        "description": "Viajes ejecutivos con la comodidad y seguridad que su empresa necesita, optimizando tiempos y garantizando un trayecto sin preocupaciones."
+      },
+      "international": {
+        "title": "Traslados a Provincias y Fuera de Argentina",
+        "description": "Expanda sus posibilidades con nuestro servicio de transporte internacional y a distintas provincias, asegurando un viaje de lujo sin fronteras."
+      }
+    }
+  },
+  "fleet": {
+    "title": "Nuestra Flota",
+    "sedan": {
+      "name": "Sedan Ejecutivo",
+      "specs": "4 pasajeros • A/C • WiFi",
+      "description": "Perfecto para viajes ejecutivos y corporativos"
+    },
+    "suv": {
+      "name": "SUV Premium",
+      "specs": "6 pasajeros • A/C • WiFi • Maletero amplio",
+      "description": "Ideal para grupos y viajes con equipaje"
+    },
+    "van": {
+      "name": "Van de Lujo",
+      "specs": "8 pasajeros • A/C • WiFi • Entretenimiento",
+      "description": "Perfecta para grupos grandes y eventos especiales"
+    },
+    "limo": {
+      "name": "Limusina Ejecutiva",
+      "specs": "6 pasajeros • A/C • Bar • WiFi Premium",
+      "description": "La máxima expresión del lujo y confort"
+    },
+    "sports": {
+      "name": "Deportivo de Lujo",
+      "specs": "2 pasajeros • A/C • Sistema de sonido premium",
+      "description": "Experiencia única para ocasiones especiales"
+    },
+    "suv_sport": {
+      "name": "SUV Deportiva",
+      "specs": "5 pasajeros • A/C • WiFi • Deportiva",
+      "description": "El balance perfecto entre lujo y rendimiento"
+    }
+  },
+  "about": {
+    "title": "¿QUIÉNES SOMOS?",
+    "description1": "Somos un equipo de profesionales con más de 22 años de experiencia en custodia y seguridad VIP, así como en la resolución y manejo de viajes ejecutivos.",
+    "description2": "Nos destacamos por nuestra atención personalizada, nuestra dedicación y nuestros vehículos exclusivos de alta gama que garantizan un traslado de lujo y confort inigualable."
+  },
+  "why_us": {
+    "title": "Por Qué Elegirnos",
+    "stats": {
+      "clients": {
+        "suffix": "+",
+        "text": "Clientes Satisfechos"
+      },
+      "security": {
+        "suffix": "%",
+        "text": "Seguridad Garantizada"
+      },
+      "support": {
+        "suffix": "/7",
+        "text": "Soporte Disponible"
+      },
+      "vehicles": {
+        "suffix": "+",
+        "text": "Vehículos de Lujo"
+      }
+    }
+  },
+  "pricing": {
+    "title": "PRECIOS REFERENCIALES",
+    "table_header": {
+      "service": "Servicio",
+      "price": "Precio"
+    },
+    "routes": {
+      "caba_ezeiza": "Desde CABA hacia Ezeiza",
+      "caba_aeroparque": "Desde CABA (Hotel centro) hacia Aeroparque",
+      "caba_san_fernando": "Desde CABA (Hotel centro) hacia San Fernando",
+      "connection_ezeiza_caba": "Conexión Ezeiza / CABA",
+      "hourly_service": "Hora de disposición",
+      "waiting_hour": "Hora de espera"
+    },
+    "prices": {
+      "caba_ezeiza": "110.000 $",
+      "caba_aeroparque": "70.000 $",
+      "caba_san_fernando": "110.000 $",
+      "connection_ezeiza_caba": "120.000 $",
+      "hourly_service": "40.000 $",
+      "waiting_hour": "20.000 $"
+    },
+    "disclaimer": "Precios referenciales sujetos a cambios de acuerdo a cada requerimiento."
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "¿Tienes alguna pregunta? Escríbenos y te responderemos personalmente.",
+    "form": {
+      "first_name": "Nombre",
+      "last_name": "Apellido",
+      "email": "Email",
+      "message": "Tu mensaje",
+      "submit_button": "Enviar Mensaje"
+    },
+    "form_errors": {
+      "required_field": "Este campo es requerido",
+      "invalid_email": "Por favor ingresa un email válido"
+    },
+    "form_validation_error": "Por favor completa todos los campos correctamente.",
+    "success_message": "¡Gracias por tu mensaje! Te responderemos pronto. - Luxury Transfer",
+    "error_message": "Error al enviar. Por favor intenta nuevamente.",
+    "alerts": {
+      "success": "Éxito",
+      "error": "Error",
+      "close_button": "Cerrar"
+    }
+  },
+  "footer": {
+  "description": "Traslados de lujo con estilo y confort",
+  "faq": "Preguntas frecuentes",
+  "terms": "Términos",
+  "rights": "Todos los derechos reservados"
+}
+}

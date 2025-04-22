@@ -1,65 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import { Car } from 'lucide-react';
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useTranslation } from 'react-i18next';
 
 interface Vehicle {
   id: number;
-  name: string;
+  nameKey: string;
   image: string;
-  specs: string;
-  description: string;
+  specsKey: string;
+  descriptionKey: string;
 }
 
-const fleetData: Vehicle[] = [
-  {
-    id: 1,
-    name: "Sedan Ejecutivo",
-    image: "https://tn.com.ar/resizer/v2/el-auto-mas-planchado-del-mundo-HCSXVGHAFVEU5FJRQQCH2EETQI.JPG?auth=faedad68e897e3f506c7cf87ea77986b29f9875b4b7111ff90c3878e98bc474a&width=767",
-    specs: "4 pasajeros • A/C • WiFi",
-    description: "Perfecto para viajes ejecutivos y corporativos"
-  },
-  {
-    id: 2,
-    name: "SUV Premium",
-    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070",
-    specs: "6 pasajeros • A/C • WiFi • Maletero amplio",
-    description: "Ideal para grupos y viajes con equipaje"
-  },
-  {
-    id: 3,
-    name: "Van de Lujo",
-    image: "https://thumbs.dreamstime.com/z/coche-peruano-del-tuk-tuk-en-la-calle-78098906.jpg",
-    specs: "8 pasajeros • A/C • WiFi • Entretenimiento",
-    description: "Perfecta para grupos grandes y eventos especiales"
-  },
-  {
-    id: 4,
-    name: "Limusina Ejecutiva",
-    image: "https://media.discordapp.net/attachments/467431736045862992/1363380669887025152/image.png?ex=6805d2b2&is=68048132&hm=d57bde42166336cc78cf6f590065a116bb19862f603dcf2311947181ce50ae9e&=&format=webp&quality=lossless",
-    specs: "6 pasajeros • A/C • Bar • WiFi Premium",
-    description: "La máxima expresión del lujo y confort"
-  },
-  {
-    id: 5,
-    name: "Deportivo de Lujo",
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070",
-    specs: "2 pasajeros • A/C • Sistema de sonido premium",
-    description: "Experiencia única para ocasiones especiales"
-  },
-  {
-    id: 6,
-    name: "SUV Deportiva",
-    image: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/02/world-of-warcraft-patch-11-1-drive-system-official-preview.jpg",
-    specs: "5 pasajeros • A/C • WiFi • Deportiva",
-    description: "El balance perfecto entre lujo y rendimiento"
-  }
-];
-
 const FleetGallery: React.FC = () => {
+  const { t } = useTranslation();
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
 
-  // Detectamos si es un dispositivo táctil
+  const fleetData: Vehicle[] = [
+    {
+      id: 1,
+      nameKey: 'fleet.sedan.name',
+      image: "https://tn.com.ar/resizer/v2/el-auto-mas-planchado-del-mundo-HCSXVGHAFVEU5FJRQQCH2EETQI.JPG?auth=faedad68e897e3f506c7cf87ea77986b29f9875b4b7111ff90c3878e98bc474a&width=767",
+      specsKey: 'fleet.sedan.specs',
+      descriptionKey: 'fleet.sedan.description'
+    },
+    {
+      id: 2,
+      nameKey: 'fleet.suv.name',
+      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070",
+      specsKey: 'fleet.suv.specs',
+      descriptionKey: 'fleet.suv.description'
+    },
+    {
+      id: 3,
+      nameKey: 'fleet.van.name',
+      image: "https://thumbs.dreamstime.com/z/coche-peruano-del-tuk-tuk-en-la-calle-78098906.jpg",
+      specsKey: 'fleet.van.specs',
+      descriptionKey: 'fleet.van.description'
+    },
+    {
+      id: 4,
+      nameKey: 'fleet.limo.name',
+      image: "https://media.discordapp.net/attachments/467431736045862992/1363380669887025152/image.png?ex=6805d2b2&is=68048132&hm=d57bde42166336cc78cf6f590065a116bb19862f603dcf2311947181ce50ae9e&=&format=webp&quality=lossless",
+      specsKey: 'fleet.limo.specs',
+      descriptionKey: 'fleet.limo.description'
+    },
+    {
+      id: 5,
+      nameKey: 'fleet.sports.name',
+      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070",
+      specsKey: 'fleet.sports.specs',
+      descriptionKey: 'fleet.sports.description'
+    },
+    {
+      id: 6,
+      nameKey: 'fleet.suv_sport.name',
+      image: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/02/world-of-warcraft-patch-11-1-drive-system-official-preview.jpg",
+      specsKey: 'fleet.suv_sport.specs',
+      descriptionKey: 'fleet.suv_sport.description'
+    }
+  ];
+
   useEffect(() => {
     const checkTouchDevice = () => {
       setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
@@ -78,7 +79,7 @@ const FleetGallery: React.FC = () => {
   return (
     <TooltipProvider>
       <section
-        id="flota"
+        id={t('nav.fleet_id')}
         className="py-24 px-6 section-fade relative overflow-hidden"
         style={{
           background: '#1A1F2C',
@@ -109,7 +110,7 @@ const FleetGallery: React.FC = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex justify-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-center relative inline-block text-white">
-              Nuestra Flota
+              {t('fleet.title')}
               <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-[#D2C8B5] rounded-full"></span>
             </h2>
           </div>
@@ -128,7 +129,7 @@ const FleetGallery: React.FC = () => {
                 >
                   <img
                     src={vehicle.image}
-                    alt={vehicle.name}
+                    alt={t(vehicle.nameKey)}
                     className={`w-full h-64 object-cover transition-transform duration-300 ${
                       isActive ? 'scale-105' : ''
                     }`}
@@ -153,9 +154,9 @@ const FleetGallery: React.FC = () => {
                     <div className="flex items-center space-x-4">
                       <Car className="h-10 w-10 text-[#D2C8B5]" />
                       <div>
-                        <h4 className="text-lg font-semibold">{vehicle.name}</h4>
-                        <p className="text-sm text-[#D2C8B5]">{vehicle.specs}</p>
-                        <p className="text-sm text-gray-300">{vehicle.description}</p>
+                        <h4 className="text-lg font-semibold">{t(vehicle.nameKey)}</h4>
+                        <p className="text-sm text-[#D2C8B5]">{t(vehicle.specsKey)}</p>
+                        <p className="text-sm text-gray-300">{t(vehicle.descriptionKey)}</p>
                       </div>
                     </div>
                   </div>
