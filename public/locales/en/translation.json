@@ -1,0 +1,175 @@
+{
+  "brand": {
+    "name": "Luxury"
+  },
+  "nav": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "language_selector": "Select language",
+    "menu_toggle": "Toggle menu",
+    "logo_alt": "Luxury Transfer logo",
+    "home_id": "home",
+    "contact_id": "contact",
+    "services_id": "services",
+    "service_details_id": "service-details",
+    "fleet_id": "fleet",
+    "about_id": "about-us",
+    "why_us_id": "why-choose-us",
+    "pricing_id": "pricing",
+    "contact_form_id": "contact_form"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Spanish",
+    "pt": "Portuguese"
+  },
+  "hero": {
+    "title": "Premium Transportation at Your Reach",
+    "subtitle": "Exclusive transport service with the highest quality standards",
+    "cta_button": "Book Now"
+  },
+ "services": {
+    "title": "Our Services",
+    "items": {
+      "executive_transport": {
+        "title": "Executive Transportation",
+        "description": "Luxury vehicles with professional drivers"
+      },
+      "24_7_service": {
+        "title": "24/7 Service",
+        "description": "Available whenever you need us"
+      },
+      "max_security": {
+        "title": "Maximum Security",
+        "description": "Your safety is our priority"
+      }
+    },
+    "categories": {
+      "airport": {
+        "title": "Airport and Terminal Transfers",
+        "description": "Premium reception and transfers to and from airports and terminals, with real-time tracking for maximum efficiency."
+      },
+      "long_distance": {
+        "title": "Medium and Long Distance Services",
+        "description": "Executive trips with the comfort and security your company needs, optimizing time and guaranteeing a worry-free journey."
+      },
+      "international": {
+        "title": "Provincial and International Transfers",
+        "description": "Expand your possibilities with our international and provincial transport service, ensuring a borderless luxury trip."
+      }
+    }
+  },
+  "fleet": {
+    "title": "Our Fleet",
+    "sedan": {
+      "name": "Executive Sedan",
+      "specs": "4 passengers • A/C • WiFi",
+      "description": "Perfect for executive and corporate travel"
+    },
+    "suv": {
+      "name": "Premium SUV",
+      "specs": "6 passengers • A/C • WiFi • Spacious trunk",
+      "description": "Ideal for groups and trips with luggage"
+    },
+    "van": {
+      "name": "Luxury Van",
+      "specs": "8 passengers • A/C • WiFi • Entertainment",
+      "description": "Perfect for large groups and special events"
+    },
+    "limo": {
+      "name": "Executive Limousine",
+      "specs": "6 passengers • A/C • Bar • Premium WiFi",
+      "description": "The ultimate expression of luxury and comfort"
+    },
+    "sports": {
+      "name": "Luxury Sports Car",
+      "specs": "2 passengers • A/C • Premium sound system",
+      "description": "Unique experience for special occasions"
+    },
+    "suv_sport": {
+      "name": "Sports SUV",
+      "specs": "5 passengers • A/C • WiFi • Sporty",
+      "description": "The perfect balance between luxury and performance"
+    }
+  },
+  "about": {
+    "title": "WHO WE ARE?",
+    "description1": "We are a team of professionals with over 22 years of experience in VIP security and executive travel management.",
+    "description2": "We stand out for our personalized attention, dedication, and exclusive high-end vehicles that guarantee unmatched luxury and comfort in transportation."
+  },
+  "why_us": {
+    "title": "Why Choose Us",
+    "stats": {
+      "clients": {
+        "suffix": "+",
+        "text": "Satisfied Clients"
+      },
+      "security": {
+        "suffix": "%",
+        "text": "Guaranteed Security"
+      },
+      "support": {
+        "suffix": "/7",
+        "text": "Available Support"
+      },
+      "vehicles": {
+        "suffix": "+",
+        "text": "Luxury Vehicles"
+      }
+    }
+  },
+  "pricing": {
+    "title": "REFERENCE PRICES",
+    "table_header": {
+      "service": "Service",
+      "price": "Price"
+    },
+    "routes": {
+      "caba_ezeiza": "From CABA to Ezeiza",
+      "caba_aeroparque": "From CABA (Downtown Hotel) to Aeroparque",
+      "caba_san_fernando": "From CABA (Downtown Hotel) to San Fernando",
+      "connection_ezeiza_caba": "Ezeiza / CABA Connection",
+      "hourly_service": "Hourly service",
+      "waiting_hour": "Waiting hour"
+    },
+    "prices": {
+      "caba_ezeiza": "$110.000",
+      "caba_aeroparque": "$70.000",
+      "caba_san_fernando": "$110.000",
+      "connection_ezeiza_caba": "$120.000",
+      "hourly_service": "$40.000",
+      "waiting_hour": "$20.000"
+    },
+    "disclaimer": "Reference prices subject to change according to each requirement."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Do you have any questions? Write to us and we'll respond personally.",
+    "form": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "message": "Your Message",
+      "submit_button": "Send Message"
+    },
+    "form_errors": {
+      "required_field": "This field is required",
+      "invalid_email": "Please enter a valid email"
+    },
+    "form_validation_error": "Please fill all fields correctly.",
+    "success_message": "Thank you for your message! We'll respond soon. - Luxury Transfer",
+    "error_message": "Error sending message. Please try again.",
+    "alerts": {
+      "success": "Success",
+      "error": "Error",
+      "close_button": "Close"
+    }
+  },
+  "footer": {
+  "description": "Luxury transfers with style and comfort",
+  "faq": "FAQ",
+  "terms": "Terms",
+  "rights": "All rights reserved"
+}
+}

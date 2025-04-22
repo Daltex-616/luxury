@@ -1,0 +1,175 @@
+{
+    "brand": {
+      "name": "Luxury"
+    },
+    "nav": {
+      "home": "Início",
+      "pricing": "Preços",
+      "contact": "Contato",
+      "language_selector": "Selecionar idioma",
+      "menu_toggle": "Menu",
+      "logo_alt": "Logo da Luxury Transfer",
+      "home_id": "inicio",
+      "contact_id": "contato",
+      "services_id": "servicos",
+      "service_details_id": "detalhes-servico",
+      "fleet_id": "frota",
+      "about_id": "quem-somos",
+      "why_us_id": "nos",
+      "pricing_id": "precos",
+      "contact_form_id": "contato_form"
+    },
+    "languages": {
+      "en": "Inglês",
+      "es": "Espanhol",
+      "pt": "Português"
+    },
+    "hero": {
+      "title": "Transporte Premium ao Seu Alcance",
+      "subtitle": "Serviço de transporte exclusivo com os mais altos padrões de qualidade",
+      "cta_button": "Reserve Agora"
+    },
+    "services": {
+      "title": "Nossos Serviços",
+      "items": {
+        "executive_transport": {
+          "title": "Transporte Executivo",
+          "description": "Veículos de luxo com motoristas profissionais"
+        },
+        "24_7_service": {
+          "title": "Serviço 24/7",
+          "description": "Disponível quando você precisar"
+        },
+        "max_security": {
+          "title": "Máxima Segurança",
+          "description": "Sua segurança é nossa prioridade"
+        }
+      },
+      "categories": {
+        "airport": {
+          "title": "Transferências para Aeroportos e Terminais",
+          "description": "Recepção e transferência premium de e para aeroportos e terminais, com acompanhamento em tempo real para máxima eficiência."
+        },
+        "long_distance": {
+          "title": "Serviços de Média e Longa Distância",
+          "description": "Viagens executivas com o conforto e segurança que sua empresa precisa, otimizando tempo e garantindo uma viagem sem preocupações."
+        },
+        "international": {
+          "title": "Transferências Interestaduais e Internacionais",
+          "description": "Expanda suas possibilidades com nosso serviço de transporte internacional e interestadual, garantindo uma viagem de luxo sem fronteiras."
+        }
+      }
+    },
+    "fleet": {
+      "title": "Nossa Frota",
+      "sedan": {
+        "name": "Sedã Executivo",
+        "specs": "4 passageiros • Ar-condicionado • WiFi",
+        "description": "Perfeito para viagens executivas e corporativas"
+      },
+      "suv": {
+        "name": "SUV Premium",
+        "specs": "6 passageiros • Ar-condicionado • WiFi • Porta-malas amplo",
+        "description": "Ideal para grupos e viagens com bagagem"
+      },
+      "van": {
+        "name": "Van de Luxo",
+        "specs": "8 passageiros • Ar-condicionado • WiFi • Entretenimento",
+        "description": "Perfeita para grandes grupos e eventos especiais"
+      },
+      "limo": {
+        "name": "Limousine Executiva",
+        "specs": "6 passageiros • Ar-condicionado • Bar • WiFi Premium",
+        "description": "A máxima expressão de luxo e conforto"
+      },
+      "sports": {
+        "name": "Carro Esportivo de Luxo",
+        "specs": "2 passageiros • Ar-condicionado • Sistema de som premium",
+        "description": "Experiência única para ocasiões especiais"
+      },
+      "suv_sport": {
+        "name": "SUV Esportiva",
+        "specs": "5 passageiros • Ar-condicionado • WiFi • Esportiva",
+        "description": "O equilíbrio perfeito entre luxo e desempenho"
+      }
+    },
+    "about": {
+      "title": "QUEM SOMOS?",
+      "description1": "Somos uma equipe de profissionais com mais de 22 anos de experiência em segurança VIP e gestão de viagens executivas.",
+      "description2": "Destacamo-nos pelo atendimento personalizado, dedicação e veículos exclusivos de alta gama que garantem transporte de luxo e conforto incomparáveis."
+    },
+    "why_us": {
+      "title": "Por Que Nos Escolher",
+      "stats": {
+        "clients": {
+          "suffix": "+",
+          "text": "Clientes Satisfeitos"
+        },
+        "security": {
+          "suffix": "%",
+          "text": "Segurança Garantida"
+        },
+        "support": {
+          "suffix": "/7",
+          "text": "Suporte Disponível"
+        },
+        "vehicles": {
+          "suffix": "+",
+          "text": "Veículos de Luxo"
+        }
+      }
+    },
+    "pricing": {
+      "title": "PREÇOS DE REFERÊNCIA",
+      "table_header": {
+        "service": "Serviço",
+        "price": "Preço"
+      },
+      "routes": {
+        "caba_ezeiza": "De CABA para Ezeiza",
+        "caba_aeroparque": "De CABA (Hotel centro) para Aeroparque",
+        "caba_san_fernando": "De CABA (Hotel centro) para San Fernando",
+        "connection_ezeiza_caba": "Conexão Ezeiza / CABA",
+        "hourly_service": "Serviço por hora",
+        "waiting_hour": "Hora de espera"
+      },
+      "prices": {
+        "caba_ezeiza": "R$ 110.000",
+        "caba_aeroparque": "R$ 70.000",
+        "caba_san_fernando": "R$ 110.000",
+        "connection_ezeiza_caba": "R$ 120.000",
+        "hourly_service": "R$ 40.000",
+        "waiting_hour": "R$ 20.000"
+      },
+      "disclaimer": "Preços de referência sujeitos a alterações de acordo com cada requisição."
+    },
+    "contact": {
+      "title": "Contate-nos",
+      "subtitle": "Tem alguma dúvida? Escreva para nós e responderemos pessoalmente.",
+      "form": {
+        "first_name": "Nome",
+        "last_name": "Sobrenome",
+        "email": "Email",
+        "message": "Sua mensagem",
+        "submit_button": "Enviar Mensagem"
+      },
+      "form_errors": {
+        "required_field": "Este campo é obrigatório",
+        "invalid_email": "Por favor insira um email válido"
+      },
+      "form_validation_error": "Por favor preencha todos os campos corretamente.",
+      "success_message": "Obrigado por sua mensagem! Responderemos em breve. - Luxury Transfer",
+      "error_message": "Erro ao enviar. Por favor tente novamente.",
+      "alerts": {
+        "success": "Sucesso",
+        "error": "Erro",
+        "close_button": "Fechar"
+      }
+    },
+    "footer": {
+      "description": "Transferências de luxo com estilo e conforto",
+      "faq": "Perguntas frequentes",
+      "terms": "Termos",
+      "rights": "Todos os direitos reservados"
+    }
+  }
