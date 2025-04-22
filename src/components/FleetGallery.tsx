@@ -41,7 +41,7 @@ const FleetGallery: React.FC = () => {
     {
       id: 4,
       nameKey: 'fleet.limo.name',
-      image: "https://media.discordapp.net/attachments/467431736045862992/1363380669887025152/image.png?ex=6805d2b2&is=68048132&hm=d57bde42166336cc78cf6f590065a116bb19862f603dcf2311947181ce50ae9e&=&format=webp&quality=lossless",
+      image: "https://media.discordapp.net/attachments/467431736045862992/1363380669887025152/image.png?ex=6807ccf2&is=68067b72&hm=32340844291aef66547479b0c0c901dc097e9a83e942f3873c74adbb6437d064&=&format=webp&quality=lossless",
       specsKey: 'fleet.limo.specs',
       descriptionKey: 'fleet.limo.description'
     },
