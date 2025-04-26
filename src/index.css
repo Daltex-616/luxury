@@ -170,6 +170,12 @@
     }
   }
 }
+@font-face {
+  font-family: 'TuFuente';
+  src: local('TuFuente'), 
+       url('/fonts/tufuente.woff2') format('woff2');
+  font-display: swap; /* Muestra texto con fallback primero */
+}
 
 @layer utilities {
   /* Animaciones unificadas */
