@@ -20,42 +20,42 @@ const FleetGallery: React.FC = () => {
     {
       id: 1,
       nameKey: 'fleet.sedan.name',
-      image: "https://tn.com.ar/resizer/v2/el-auto-mas-planchado-del-mundo-HCSXVGHAFVEU5FJRQQCH2EETQI.JPG?auth=faedad68e897e3f506c7cf87ea77986b29f9875b4b7111ff90c3878e98bc474a&width=767",
+      image: "mercedes_benz_transport_ejecutivo.png",
       specsKey: 'fleet.sedan.specs',
       descriptionKey: 'fleet.sedan.description'
     },
     {
       id: 2,
       nameKey: 'fleet.suv.name',
-      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070",
+      image: "toyota_transport_ejecutivas.png",
       specsKey: 'fleet.suv.specs',
       descriptionKey: 'fleet.suv.description'
     },
     {
       id: 3,
       nameKey: 'fleet.van.name',
-      image: "https://thumbs.dreamstime.com/z/coche-peruano-del-tuk-tuk-en-la-calle-78098906.jpg",
+      image: "renault_transporte_utilitario.png",
       specsKey: 'fleet.van.specs',
       descriptionKey: 'fleet.van.description'
     },
     {
       id: 4,
       nameKey: 'fleet.limo.name',
-      image: "https://media.discordapp.net/attachments/467431736045862992/1363380669887025152/image.png?ex=6807ccf2&is=68067b72&hm=32340844291aef66547479b0c0c901dc097e9a83e942f3873c74adbb6437d064&=&format=webp&quality=lossless",
+      image: "corolla_transporte_ejecutivo.png",
       specsKey: 'fleet.limo.specs',
       descriptionKey: 'fleet.limo.description'
     },
     {
       id: 5,
       nameKey: 'fleet.sports.name',
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070",
+      image: "mercedes_benz_transporte_ejecutivas.png",
       specsKey: 'fleet.sports.specs',
       descriptionKey: 'fleet.sports.description'
     },
     {
       id: 6,
       nameKey: 'fleet.suv_sport.name',
-      image: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/02/world-of-warcraft-patch-11-1-drive-system-official-preview.jpg",
+      image: "cronos_transporte_urbano.png",
       specsKey: 'fleet.suv_sport.specs',
       descriptionKey: 'fleet.suv_sport.description'
     }

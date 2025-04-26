@@ -26,7 +26,6 @@ const Servicios = () => {
   return (
     <section id={t('nav.service_details_id')} className="py-20 px-4 bg-[#1A1F2C] text-white section-fade">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-16">{t('services.title')}</h2>
         <div className="grid md:grid-cols-1 gap-16">
           {serviceCategories.map((category, index) => (
             <div key={index} className="text-center">
