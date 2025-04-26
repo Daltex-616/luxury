@@ -3,8 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { testimonials } from "@/constants/testimonals.data";
+import { useTranslation } from 'react-i18next';
 
 const SliderTestimonios = () => {
+  const {t} = useTranslation()
   const settings = {
     dots: true,
     infinite: true,
@@ -51,7 +53,7 @@ const SliderTestimonios = () => {
       <div className="max-w-7xl mx-auto">
         <div className="testimonials-wrapper relative">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-center mb-12 md:mb-16 animate-slide-up">
-            Testimonios
+            {t("reviews.title")}
           </h2>
           <div className="slider-container pb-12"> {/* Contenedor con espacio para dots */}
             <Slider {...settings}>

@@ -171,5 +171,8 @@
   "faq": "Preguntas frecuentes",
   "terms": "Términos",
   "rights": "Todos los derechos reservados"
+},
+"reviews":{
+  "title":"Testimonios"
 }
 }
