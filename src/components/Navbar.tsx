@@ -115,8 +115,8 @@ const Navbar: React.FC = () => {
     <motion.nav
       className={`fixed w-full z-50 font-[Playfair_Display] transition-all duration-500 ${
         isScrolled
-          ? "bg-black/50 shadow-[0_0_15px_rgba(255,255,255,0.2)] border-b border-white/10"
-          : "bg-black/90 backdrop-blur-xl shadow-lg border-b border-white/10"
+          ? "bg-[#232020]/50 shadow-[0_0_15px_rgba(255,255,255,0.2)] border-b border-white/10"
+          : "bg-[#232020] backdrop-blur-xl shadow-lg border-b border-white/10"
       }`}
       variants={navbarVariants}
       initial="initial"
@@ -126,11 +126,11 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-full">
           {/* Logo Section */}
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center shadow-lg bg-transparent">
               <img
                 src="logo.png"
                 alt={t('nav.logo_alt')}
-                className="w-10 h-10 object-contain"
+                className="w-full h-full object-cover"
               />
             </div>
             <span className="font-bold text-white text-3xl">{t('brand.name')}</span>
@@ -183,7 +183,7 @@ const Navbar: React.FC = () => {
                 <AnimatePresence>
                   {isLanguageOpen && (
                     <motion.div
-                      className="absolute right-0 mt-2 w-40 bg-black/95 border border-white/10 rounded-lg shadow-lg z-50"
+                      className="absolute right-0 mt-2 w-40 bg-[#232020]/95 border border-white/10 rounded-lg shadow-lg z-50"
                       variants={languageMenuVariants}
                       initial="hidden"
                       animate="visible"
@@ -236,7 +236,7 @@ const Navbar: React.FC = () => {
               <AnimatePresence>
                 {isLanguageOpen && (
                   <motion.div
-                    className="absolute right-0 top-12 w-40 bg-black/95 border border-white/10 rounded-lg shadow-lg z-50"
+                    className="absolute right-0 top-12 w-40 bg-[#232020]/95 border border-white/10 rounded-lg shadow-lg z-50"
                     variants={languageMenuVariants}
                     initial="hidden"
                     animate="visible"
@@ -283,7 +283,7 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden bg-black/95"
+            className="md:hidden bg-[#232020]/95"
             variants={mobileMenuVariants}
             initial="hidden"
             animate="visible"

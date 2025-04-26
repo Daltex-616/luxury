@@ -63,34 +63,34 @@
   "fleet": {
     "title": "Our Fleet",
     "sedan": {
-      "name": "Executive Sedan",
-      "specs": "4 passengers • A/C • WiFi",
+      "name": "Mercedes Benz Vito",
+      "specs": "14 passengers • A/C • Spacious trunk",
       "description": "Perfect for executive and corporate travel"
     },
     "suv": {
-      "name": "Premium SUV",
-      "specs": "6 passengers • A/C • WiFi • Spacious trunk",
+      "name": "Toyota Hiace",
+      "specs": "7 passengers • A/C • WiFi • Spacious trunk",
       "description": "Ideal for groups and trips with luggage"
     },
     "van": {
-      "name": "Luxury Van",
-      "specs": "8 passengers • A/C • WiFi • Entertainment",
-      "description": "Perfect for large groups and special events"
+      "name": "Renault Kangoo",
+      "specs": "3 passengers • A/C",
+      "description": "Perfect for transporting people and luggage"
     },
     "limo": {
-      "name": "Executive Limousine",
-      "specs": "6 passengers • A/C • Bar • Premium WiFi",
-      "description": "The ultimate expression of luxury and comfort"
+      "name": "Toyota Corolla",
+      "specs": "4 passengers • A/C",
+      "description": "The perfect balance between luxury and performance"
     },
     "sports": {
-      "name": "Luxury Sports Car",
-      "specs": "2 passengers • A/C • Premium sound system",
-      "description": "Unique experience for special occasions"
+      "name": "Mercedes Benz Vito",
+      "specs": "14 passengers • A/C • Spacious trunk",
+      "description": "Perfect for executive and corporate travel"
     },
     "suv_sport": {
-      "name": "Sports SUV",
-      "specs": "5 passengers • A/C • WiFi • Sporty",
-      "description": "The perfect balance between luxury and performance"
+      "name": "Fiat Cronos",
+      "specs": "3 passengers • A/C",
+      "description": "Perfect for a fast and comfortable trip"
     }
   },
   "about": {

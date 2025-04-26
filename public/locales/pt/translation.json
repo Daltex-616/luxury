@@ -63,34 +63,34 @@
   "fleet": {
     "title": "Nossa Frota",
     "sedan": {
-      "name": "Sedã Executivo",
-      "specs": "4 passageiros • Ar-condicionado • WiFi",
+      "name": "Mercedes Benz Vito",
+      "specs": "14 passageiros • Ar-condicionado • Porta-malas amplo",
       "description": "Perfeito para viagens executivas e corporativas"
     },
     "suv": {
-      "name": "SUV Premium",
-      "specs": "6 passageiros • Ar-condicionado • WiFi • Porta-malas amplo",
+      "name": "Toyota Hiace",
+      "specs": "7 passageiros • Ar-condicionado • WiFi • Porta-malas amplo",
       "description": "Ideal para grupos e viagens com bagagem"
     },
     "van": {
-      "name": "Van de Luxo",
-      "specs": "8 passageiros • Ar-condicionado • WiFi • Entretenimento",
-      "description": "Perfeita para grandes grupos e eventos especiais"
+      "name": "Renault Kangoo",
+      "specs": "3 passageiros • Ar-condicionado",
+      "description": "Perfeita para transporte de pessoas e bagagem"
     },
     "limo": {
-      "name": "Limousine Executiva",
-      "specs": "6 passageiros • Ar-condicionado • Bar • WiFi Premium",
-      "description": "A máxima expressão de luxo e conforto"
+      "name": "Toyota Corolla",
+      "specs": "4 passageiros • Ar-condicionado",
+      "description": "O equilíbrio perfeito entre luxo e desempenho"
     },
     "sports": {
-      "name": "Carro Esportivo de Luxo",
-      "specs": "2 passageiros • Ar-condicionado • Sistema de som premium",
-      "description": "Experiência única para ocasiões especiais"
+      "name": "Mercedes Benz Vito",
+      "specs": "14 passageiros • Ar-condicionado • Porta-malas amplo",
+      "description": "Perfeito para viagens executivas e corporativas"
     },
     "suv_sport": {
-      "name": "SUV Esportiva",
-      "specs": "5 passageiros • Ar-condicionado • WiFi • Esportiva",
-      "description": "O equilíbrio perfeito entre luxo e desempenho"
+      "name": "Fiat Cronos",
+      "specs": "3 passageiros • Ar-condicionado",
+      "description": "Perfeito para uma viagem rápida e confortável"
     }
   },
   "about": {
@@ -171,8 +171,4 @@
     "faq": "Perguntas frequentes",
     "terms": "Termos",
     "rights": "Todos os direitos reservados"
-  },
-  "reviews": {
-    "title": "Testemunhos"
   }
-}

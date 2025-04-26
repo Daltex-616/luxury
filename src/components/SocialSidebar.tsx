@@ -1,7 +1,5 @@
 import React from 'react';
-import { Instagram, Facebook, Youtube } from "lucide-react";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaWhatsapp } from "react-icons/fa";
+import { Instagram, Mail, Smartphone } from "lucide-react";
 
 const SocialSidebar: React.FC = () => {
   return (
@@ -10,7 +8,7 @@ const SocialSidebar: React.FC = () => {
         href="https://www.instagram.com/luxurytransfer/" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="p-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white hover:scale-110 transition-transform duration-200 rounded-l-lg shadow-lg"
+        className="p-3 bg-background text-text/60 hover:text-accent transition-all duration-300 hover:scale-110 border border-accent/30 shadow-lg rounded-l-lg"
         aria-label="Instagram"
       >
         <Instagram size={24} />
@@ -19,37 +17,19 @@ const SocialSidebar: React.FC = () => {
         href="https://wa.me/1234567890" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="p-3 bg-[#25D366] text-white hover:scale-110 transition-transform duration-200 rounded-l-lg shadow-lg"
+        className="p-3 bg-background text-text/60 hover:text-accent transition-all duration-300 hover:scale-110 border border-accent/30 shadow-lg rounded-l-lg"
         aria-label="WhatsApp"
       >
-        <FaWhatsapp size={24} />
+        <Smartphone size={24} />
       </a>
       <a 
-        href="https://facebook.com" 
+        href="mailto:contact@luxurytransfer.com" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="p-3 bg-[#1877F2] text-white hover:scale-110 transition-transform duration-200 rounded-l-lg shadow-lg"
-        aria-label="Facebook"
+        className="p-3 bg-background text-text/60 hover:text-accent transition-all duration-300 hover:scale-110 border border-accent/30 shadow-lg rounded-l-lg"
+        aria-label="Email"
       >
-        <Facebook size={24} />
-      </a>
-      <a 
-        href="https://twitter.com" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="p-3 bg-black text-white hover:scale-110 transition-transform duration-200 rounded-l-lg shadow-lg"
-        aria-label="X (Twitter)"
-      >
-        <FaXTwitter size={24} />
-      </a>
-      <a 
-        href="https://youtube.com" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="p-3 bg-[#FF0000] text-white hover:scale-110 transition-transform duration-200 rounded-l-lg shadow-lg"
-        aria-label="YouTube"
-      >
-        <Youtube size={24} />
+        <Mail size={24} />
       </a>
     </div>
   );
