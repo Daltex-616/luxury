@@ -15,7 +15,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <SocialSidebar />
-      <Hero />
+      <Hero preloadImage={true} />
       <ServiciosCuadro />
       <Servicios />
       <FleetGallery />
