@@ -168,7 +168,9 @@
   },
   "footer": {
     "description": "Transferências de luxo com estilo e conforto",
-    "faq": "Perguntas frequentes",
-    "terms": "Termos",
-    "rights": "Todos os direitos reservados"
-  }
+    "faq":  "Nosso Suporte"
+  },
+  "reviews":{
+  "title":"Testimonios"
+}
+}

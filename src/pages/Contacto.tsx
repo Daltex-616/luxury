@@ -8,48 +8,48 @@ const Contacto = () => {
   const [alert, setAlert] = useState({
     show: false,
     message: '',
-    type: 'success' as 'success' | 'error'
+    type: 'success' as 'success' | 'error',
   });
   const [formErrors, setFormErrors] = useState({
     user_name: false,
     user_lastname: false,
     user_email: false,
-    message: false
+    message: false,
+  });
+  const [formData, setFormData] = useState({
+    user_name: '',
+    user_lastname: '',
+    user_email: '',
+    message: '',
   });
 
   const validateForm = () => {
     if (!form.current) return false;
 
-    const inputs = form.current.elements;
     let isValid = true;
     const newErrors = {
       user_name: false,
       user_lastname: false,
       user_email: false,
-      message: false
+      message: false,
     };
 
-    // Validar cada campo
-    const nameInput = inputs.namedItem('user_name') as HTMLInputElement;
-    if (!nameInput.value.trim()) {
+    if (!formData.user_name.trim()) {
       newErrors.user_name = true;
       isValid = false;
     }
 
-    const lastnameInput = inputs.namedItem('user_lastname') as HTMLInputElement;
-    if (!lastnameInput.value.trim()) {
+    if (!formData.user_lastname.trim()) {
       newErrors.user_lastname = true;
       isValid = false;
     }
 
-    const emailInput = inputs.namedItem('user_email') as HTMLInputElement;
-    if (!emailInput.value.trim() || !/^\S+@\S+\.\S+$/.test(emailInput.value)) {
+    if (!formData.user_email.trim() || !/^\S+@\S+\.\S+$/.test(formData.user_email)) {
       newErrors.user_email = true;
       isValid = false;
     }
 
-    const messageInput = inputs.namedItem('message') as HTMLTextAreaElement;
-    if (!messageInput.value.trim()) {
+    if (!formData.message.trim()) {
       newErrors.message = true;
       isValid = false;
     }
@@ -65,47 +65,63 @@ const Contacto = () => {
       setAlert({
         show: true,
         message: t('contact.form_validation_error'),
-        type: 'error'
+        type: 'error',
       });
       return;
     }
 
     if (form.current) {
-      emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
-        .then((result) => {
-          setAlert({
-            show: true,
-            message: t('contact.success_message'),
-            type: 'success'
-          });
-          if (form.current) form.current.reset();
-        }, (error) => {
-          setAlert({
-            show: true,
-            message: t('contact.error_message'),
-            type: 'error'
-          });
-        });
+      emailjs
+        .sendForm(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          form.current,
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        )
+        .then(
+          (result) => {
+            setAlert({
+              show: true,
+              message: t('contact.success_message'),
+              type: 'success',
+            });
+            setFormData({
+              user_name: '',
+              user_lastname: '',
+              user_email: '',
+              message: '',
+            });
+          },
+          (error) => {
+            setAlert({
+              show: true,
+              message: t('contact.error_message'),
+              type: 'error',
+            });
+          }
+        );
     }
   };
 
   const closeAlert = () => {
-    setAlert(prev => ({ ...prev, show: false }));
+    setAlert((prev) => ({ ...prev, show: false }));
   };
 
-  const handleInputChange = (field: keyof typeof formErrors) => {
+  const handleInputChange = (
+    field: keyof typeof formErrors,
+    value: string
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (formErrors[field]) {
-      setFormErrors(prev => ({ ...prev, [field]: false }));
+      setFormErrors((prev) => ({ ...prev, [field]: false }));
     }
   };
 
   return (
-    <section id={t('nav.contact_id')} className="py-24 px-6 bg-gradient-to-b from-gray-900/10 to-black/50 section-fade">
+    <section
+      id={t('nav.contact_id')}
+      className="py-24 px-6 bg-gradient-to-b from-gray-900/10 to-black/50 section-fade"
+    >
       <div className="max-w-4xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-16">
@@ -126,16 +142,28 @@ const Contacto = () => {
                 id="user_name"
                 type="text"
                 name="user_name"
-                placeholder=" "
-                required
-                onChange={() => handleInputChange('user_name')}
-                className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_name ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
+                value={formData.user_name}
+                onChange={(e) =>
+                  handleInputChange('user_name', e.target.value)
+                }
+                className={`w-full p-4 rounded-lg bg-gray-900/80 border ${
+                  formErrors.user_name ? 'border-red-500' : 'border-gray-700/50'
+                } focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 text-white`}
               />
-              <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
+              <label
+                htmlFor="user_name"
+                className={`absolute left-4 pointer-events-none transition-all duration-300 ${
+                  formData.user_name
+                    ? '-translate-y-7 text-xs text-white'
+                    : 'top-4 text-base text-gray-400'
+                }`}
+              >
                 {t('contact.form.first_name')}
-              </span>
+              </label>
               {formErrors.user_name && (
-                <p className="mt-1 text-sm text-red-500">{t('contact.form_errors.required_field')}</p>
+                <p className="mt-1 text-sm text-red-500">
+                  {t('contact.form_errors.required_field')}
+                </p>
               )}
             </div>
 
@@ -145,16 +173,30 @@ const Contacto = () => {
                 id="user_lastname"
                 type="text"
                 name="user_lastname"
-                placeholder=" "
-                required
-                onChange={() => handleInputChange('user_lastname')}
-                className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_lastname ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
+                value={formData.user_lastname}
+                onChange={(e) =>
+                  handleInputChange('user_lastname', e.target.value)
+                }
+                className={`w-full p-4 rounded-lg bg-gray-900/80 border ${
+                  formErrors.user_lastname
+                    ? 'border-red-500'
+                    : 'border-gray-700/50'
+                } focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 text-white`}
               />
-              <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
+              <label
+                htmlFor="user_lastname"
+                className={`absolute left-4 pointer-events-none transition-all duration-300 ${
+                  formData.user_lastname
+                    ? '-translate-y-7 text-xs text-white'
+                    : 'top-4 text-base text-gray-400'
+                }`}
+              >
                 {t('contact.form.last_name')}
-              </span>
+              </label>
               {formErrors.user_lastname && (
-                <p className="mt-1 text-sm text-red-500">{t('contact.form_errors.required_field')}</p>
+                <p className="mt-1 text-sm text-red-500">
+                  {t('contact.form_errors.required_field')}
+                </p>
               )}
             </div>
           </div>
@@ -165,17 +207,27 @@ const Contacto = () => {
               id="user_email"
               type="email"
               name="user_email"
-              placeholder=" "
-              required
-              onChange={() => handleInputChange('user_email')}
-              className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.user_email ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
+              value={formData.user_email}
+              onChange={(e) =>
+                handleInputChange('user_email', e.target.value)
+              }
+              className={`w-full p-4 rounded-lg bg-gray-900/80 border ${
+                formErrors.user_email ? 'border-red-500' : 'border-gray-700/50'
+              } focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 text-white`}
             />
-            <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
+            <label
+              htmlFor="user_email"
+              className={`absolute left-4 pointer-events-none transition-all duration-300 ${
+                formData.user_email
+                  ? '-translate-y-7 text-xs text-white'
+                  : 'top-4 text-base text-gray-400'
+              }`}
+            >
               {t('contact.form.email')}
-            </span>
+            </label>
             {formErrors.user_email && (
               <p className="mt-1 text-sm text-red-500">
-                {form.current && !(form.current.elements.namedItem('user_email') as HTMLInputElement)?.value.trim() 
+                {!formData.user_email.trim()
                   ? t('contact.form_errors.required_field')
                   : t('contact.form_errors.invalid_email')}
               </p>
@@ -187,17 +239,29 @@ const Contacto = () => {
             <textarea
               id="message"
               name="message"
-              placeholder=" "
+              value={formData.message}
+              onChange={(e) =>
+                handleInputChange('message', e.target.value)
+              }
               rows={5}
-              required
-              onChange={() => handleInputChange('message')}
-              className={`w-full p-4 rounded-lg bg-gray-900/80 border ${formErrors.message ? 'border-red-500' : 'border-gray-700/50'} focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 peer text-white placeholder-transparent`}
+              className={`w-full p-4 rounded-lg bg-gray-900/80 border ${
+                formErrors.message ? 'border-red-500' : 'border-gray-700/50'
+              } focus:border-white focus:ring-2 focus:ring-white/10 outline-none transition-all duration-300 text-white`}
             ></textarea>
-            <span className="absolute left-4 top-4 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-white peer-placeholder-shown:top-4 peer-placeholder-shown:text-base">
+            <label
+              htmlFor="message"
+              className={`absolute left-4 top-4 pointer-events-none transition-all duration-300 ${
+                formData.message
+                  ? '-translate-y-7 text-xs text-white'
+                  : 'text-base text-gray-400'
+              }`}
+            >
               {t('contact.form.message')}
-            </span>
+            </label>
             {formErrors.message && (
-              <p className="mt-1 text-sm text-red-500">{t('contact.form_errors.required_field')}</p>
+              <p className="mt-1 text-sm text-red-500">
+                {t('contact.form_errors.required_field')}
+              </p>
             )}
           </div>
 
@@ -213,28 +277,71 @@ const Contacto = () => {
         {/* Modal de Alerta */}
         {alert.show && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div 
-              className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" 
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
               onClick={closeAlert}
             />
-            
-            <div className={`relative z-10 w-full max-w-md rounded-xl overflow-hidden transition-all transform animate-slide-up`}>
-              <div className={`p-6 ${alert.type === 'success' ? 'bg-gray-900/95 border-yellow-500' : 'bg-red-900/90 border-red-700'} border rounded-xl backdrop-blur-sm`}>
+            <div
+              className={`relative z-10 w-full max-w-md rounded-xl overflow-hidden transition-all transform animate-slide-up`}
+            >
+              <div
+                className={`p-6 ${
+                  alert.type === 'success'
+                    ? 'bg-gray-900/95 border-yellow-500'
+                    : 'bg-red-900/90 border-red-700'
+                } border rounded-xl backdrop-blur-sm`}
+              >
                 <div className="flex items-start">
-                  <div className={`flex-shrink-0 p-2 rounded-full ${alert.type === 'success' ? 'bg-yellow-500/20' : 'bg-red-700/20'}`}>
+                  <div
+                    className={`flex-shrink-0 p-2 rounded-full ${
+                      alert.type === 'success'
+                        ? 'bg-yellow-500/20'
+                        : 'bg-red-700/20'
+                    }`}
+                  >
                     {alert.type === 'success' ? (
-                      <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <svg
+                        className="w-6 h-6 text-yellow-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                     ) : (
-                      <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <svg
+                        className="w-6 h-6 text-red-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
                       </svg>
                     )}
                   </div>
                   <div className="ml-4">
-                    <h3 className={`text-lg font-medium ${alert.type === 'success' ? 'text-yellow-500' : 'text-red-300'}`}>
-                      {alert.type === 'success' ? t('contact.alerts.success') : t('contact.alerts.error')}
+                    <h3
+                      className={`text-lg font-medium ${
+                        alert.type === 'success'
+                          ? 'text-yellow-500'
+                          : 'text-red-300'
+                      }`}
+                    >
+                      {alert.type === 'success'
+                        ? t('contact.alerts.success')
+                        : t('contact.alerts.error')}
                     </h3>
                     <div className="mt-2 text-sm text-gray-300">
                       <p>{alert.message}</p>
@@ -244,7 +351,11 @@ const Contacto = () => {
                 <div className="mt-5 flex justify-end">
                   <button
                     type="button"
-                    className={`px-4 py-2 rounded-md text-sm font-medium ${alert.type === 'success' ? 'text-yellow-500 hover:bg-yellow-500/10' : 'text-red-300 hover:bg-red-800/50'} transition-colors`}
+                    className={`px-4 py-2 rounded-md text-sm font-medium ${
+                      alert.type === 'success'
+                        ? 'text-yellow-500 hover:bg-yellow-500/10'
+                        : 'text-red-300 hover:bg-red-800/50'
+                    } transition-colors`}
                     onClick={closeAlert}
                   >
                     {t('contact.alerts.close_button')}

@@ -51,19 +51,13 @@ const Footer = () => {
 
                     {/* Enlaces legales */}
                     <div className="flex flex-col items-center md:items-end gap-2">
-                        <div className="flex gap-4">
+                        <div className="flex justify-center gap-4">
                             <a href="/about" className="text-text/60 hover:text-accent transition-colors text-sm">
                                 {t('footer.faq')}
                             </a>
-                            <a href="/contact" className="text-text/60 hover:text-accent transition-colors text-sm">
-                                {t('nav.contact')}
-                            </a>
-                            <a href="/terms" className="text-text/60 hover:text-accent transition-colors text-sm">
-                                {t('footer.terms')}
-                            </a>
                         </div>
                         <p className="text-text/50 text-sm mt-2">
-                            © {new Date().getFullYear()} {t('brand.name')}. {t('footer.rights')}
+                            © {new Date().getFullYear()} Luxury Transfer
                         </p>
                     </div>
                 </div>
