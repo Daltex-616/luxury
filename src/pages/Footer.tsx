@@ -3,6 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
     const { t } = useTranslation();
+    const email = "soporte@luxurytransfer.com.ar";
+
+    const handleMailClick = () => {
+        window.location.href = `mailto:${email}`;
+    };
 
     return (
         <footer className="bg-gradient-to-b from-background to-accent/10 border-t border-accent/30 py-12">
@@ -30,7 +35,7 @@ const Footer = () => {
                             <Instagram size={28} />
                         </a>
                         <a
-                            href="https://wa.me/1234567890"
+                            href="https://wa.me/+54 9 11 5980-4525"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-text/60 hover:text-accent transition-all duration-300 transform hover:scale-110"
@@ -38,23 +43,19 @@ const Footer = () => {
                         >
                             <Smartphone size={28} />
                         </a>
-                        <a
-                            href="mailto:contact@luxurytransfer.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            onClick={handleMailClick}
                             className="text-text/60 hover:text-accent transition-all duration-300 transform hover:scale-110"
                             aria-label="Email"
                         >
                             <Mail size={28} />
-                        </a>
+                        </button>
                     </div>
 
                     {/* Enlaces legales */}
                     <div className="flex flex-col items-center md:items-end gap-2">
                         <div className="flex justify-center gap-4">
-                            <a href="/about" className="text-text/60 hover:text-accent transition-colors text-sm">
-                                {t('footer.faq')}
-                            </a>
+                            <button className="text-text/60 hover:text-accent transition-colors text-sm" onClick={handleMailClick}>{t('footer.faq')}</button>
                         </div>
                         <p className="text-text/50 text-sm mt-2">
                             © {new Date().getFullYear()} Luxury Transfer

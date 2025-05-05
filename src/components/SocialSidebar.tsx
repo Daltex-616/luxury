@@ -14,7 +14,7 @@ const SocialSidebar: React.FC = () => {
         <Instagram size={24} />
       </a>
       <a 
-        href="https://wa.me/1234567890" 
+        href="https://wa.me/+5491159804525" 
         target="_blank" 
         rel="noopener noreferrer"
         className="p-3 bg-background text-text/60 hover:text-accent transition-all duration-300 hover:scale-110 border border-accent/30 shadow-lg rounded-l-lg"
@@ -23,7 +23,7 @@ const SocialSidebar: React.FC = () => {
         <Smartphone size={24} />
       </a>
       <a 
-        href="mailto:contact@luxurytransfer.com" 
+        href="mailto:contacto@luxurytransfer.com.ar" 
         target="_blank" 
         rel="noopener noreferrer"
         className="p-3 bg-background text-text/60 hover:text-accent transition-all duration-300 hover:scale-110 border border-accent/30 shadow-lg rounded-l-lg"
