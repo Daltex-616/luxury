@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -12,11 +11,12 @@ export default {
         accent: "#E5DEFF",
         secondary: "#FDE1D3",
         text: "#F1F0FB",
-        
       },
+
       animation: {
         "fade-up": "fadeUp 0.5s ease-out forwards",
         "fade-in": "fadeIn 0.5s ease-out forwards",
+        ping: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
       },
       keyframes: {
         fadeUp: {
