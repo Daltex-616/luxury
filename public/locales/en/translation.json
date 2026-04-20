@@ -172,5 +172,33 @@
 },
 "reviews":{
   "title":"Reviews"
+},
+"contacto": {
+  "titulo": "Transfer Form",
+  "logistica_titulo": "Timing Logistics",
+  "fecha": "Date",
+  "dia": "Day",
+  "dia_placeholder": "e.g., Monday",
+  "hora": "Start Time",
+  "cliente_titulo": "Client / Contact",
+  "nombre_placeholder": "Full name",
+  "tel_placeholder": "Phone (WhatsApp)",
+  "pasajeros_titulo": "Passengers",
+  "pax_placeholder": "Pax Count",
+  "valijas_placeholder": "Luggage",
+  "acompanantes_placeholder": "Companion names",
+  "notas_pax_placeholder": "Children / Seniors",
+  "itinerario_titulo": "Route Itinerary",
+  "inicio_placeholder": "Pickup Point",
+  "destino_placeholder": "Destination Point",
+  "vuelo_placeholder": "Connecting Flight (if applicable)",
+  "butaca": "Child Seat",
+  "cartel": "Reception Sign",
+  "observaciones_label": "Other Details / Notes",
+  "observaciones_placeholder": "Indicate any important additional details...",
+  "btn_generar": "Generate Transfer Form",
+  "btn_enviando": "Processing...",
+  "alert_success": "Form sent successfully. Protocol activated.",
+  "alert_error": "Error: Check your connection or configuration."
 }
 }

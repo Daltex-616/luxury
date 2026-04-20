@@ -173,5 +173,33 @@
 },
 "reviews":{
   "title":"Testimonios"
+},
+"contacto": {
+  "titulo": "Ficha de Traslado",
+  "logistica_titulo": "Logística Temporal",
+  "fecha": "Fecha",
+  "dia": "Día",
+  "dia_placeholder": "Ej: Lunes",
+  "hora": "Hora de Inicio",
+  "cliente_titulo": "Cliente / Contacto",
+  "nombre_placeholder": "Nombre completo",
+  "tel_placeholder": "Teléfono (WhatsApp)",
+  "pasajeros_titulo": "Pasajeros",
+  "pax_placeholder": "Cant. Pax",
+  "valijas_placeholder": "Valijas",
+  "acompanantes_placeholder": "Nombres de acompañantes",
+  "notas_pax_placeholder": "Niños / Mayores",
+  "itinerario_titulo": "Itinerario de Ruta",
+  "inicio_placeholder": "Punto de Recogida",
+  "destino_placeholder": "Punto de Destino",
+  "vuelo_placeholder": "Vuelo a conectar (si aplica)",
+  "butaca": "Butaca Infantil",
+  "cartel": "Cartel Recepción",
+  "observaciones_label": "Otros Detalles / Observaciones",
+  "observaciones_placeholder": "Indique cualquier detalle adicional importante...",
+  "btn_generar": "Generar Ficha de Traslado",
+  "btn_enviando": "Procesando...",
+  "alert_success": "Ficha enviada con éxito. Protocolo activado.",
+  "alert_error": "Error: Verifica tu conexión o configuración."
 }
 }
