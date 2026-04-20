@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import SocialSidebar from '@/components/SocialSidebar';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Plane, User, Phone, MapPin, CreditCard, ClipboardList, Briefcase } from 'lucide-react';
+import Footer from './Footer';
 
 const Contacto = () => {
   const { t } = useTranslation();
@@ -157,6 +158,7 @@ const Contacto = () => {
           </form>
         </motion.div>
       </section>
+      <Footer/>
     </>
   );
 };

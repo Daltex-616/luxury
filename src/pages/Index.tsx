@@ -23,7 +23,6 @@ const Index = () => {
       <NosotrosCuadors />
       <Price />
       <SliderTestimonios />
-      <Contacto />
       <Footer />
     </div>
   );
