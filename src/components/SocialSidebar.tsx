@@ -34,7 +34,7 @@ const SocialSidebar: React.FC = () => {
 
       {/* WhatsApp - ICONO OFICIAL CON TELÉFONO */}
       <a 
-        href="https://wa.me/+5491159804525" 
+        href="https://wa.me/+5491157712579"
         target="_blank" 
         rel="noopener noreferrer"
         className="flex-1 md:flex-none flex items-center justify-center 
