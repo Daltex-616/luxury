@@ -134,12 +134,12 @@
       "waiting_hour": "Hora de espera"
     },
     "prices": {
-      "caba_ezeiza": "$110.000",
+      "caba_ezeiza": "$120.000",
       "caba_aeroparque": "$70.000",
-      "caba_san_fernando": "$110.000",
-      "connection_ezeiza_caba": "$120.000",
-      "hourly_service": "$40.000",
-      "waiting_hour": "$20.000"
+      "caba_san_fernando": "$120.000",
+      "connection_ezeiza_caba": "$140.000",
+      "hourly_service": "$50.000",
+      "waiting_hour": "$30.000"
     },
     "disclaimer": "Preços de referência sujeitos a alterações de acordo com cada requisição."
   },
