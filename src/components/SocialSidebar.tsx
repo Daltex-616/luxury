@@ -59,7 +59,7 @@ const SocialSidebar: React.FC = () => {
 
       {/* Email - NUEVO CORREO */}
       <a 
-        href="mailto:roldanisraelelias@gmail.com" 
+        href="mailto:luxurytransfer.s365@gmail.com" 
         target="_blank" 
         rel="noopener noreferrer"
         className="flex-1 md:flex-none flex items-center justify-center 
