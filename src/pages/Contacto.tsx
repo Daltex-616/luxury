@@ -98,6 +98,7 @@ const Contacto = () => {
                     <User size={18} className="text-accent" /> {t('contacto.cliente_titulo')}
                   </h3>
                   <input type="text" name="cliente_nombre" placeholder={t('contacto.nombre_placeholder')} required className={inputStyle} />
+                  <input type="email" name="cliente_email" placeholder={t('contacto.email_placeholder')} required className={inputStyle} />
                   <input type="tel" name="cliente_telefono" placeholder={t('contacto.tel_placeholder')} required className={inputStyle} />
                 </div>
                 <div className="space-y-6">
