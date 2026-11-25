@@ -149,7 +149,7 @@
     "form": {
       "first_name": "Nombre",
       "last_name": "Apellido",
-      "email": "Email",
+      "contacto.email_placeholder": "Email",
       "message": "Tu mensaje",
       "submit_button": "Enviar Mensaje"
     },
@@ -183,6 +183,7 @@
   "hora": "Hora de Inicio",
   "cliente_titulo": "Cliente / Contacto",
   "nombre_placeholder": "Nombre completo",
+  "email_placeholder": "Email",
   "tel_placeholder": "Teléfono (WhatsApp)",
   "pasajeros_titulo": "Pasajeros",
   "pax_placeholder": "Cant. Pax",
