@@ -13,36 +13,82 @@ const Contacto = () => {
   const [isSending, setIsSending] = useState(false);
   const [alert, setAlert] = useState({ show: false, message: '', type: 'success' as 'success' | 'error' });
 
+  const showAlert = (message: string, type: 'success' | 'error') => {
+    setAlert({ show: true, message, type });
+    setTimeout(() => {
+      setAlert((prev) => ({ ...prev, show: false }));
+    }, 5000);
+  };
+
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isSending) return;
+    if (isSending || !form.current) return;
+
+    const formData = new FormData(form.current);
+    const email = String(formData.get('cliente_email') || '').trim();
+    const rawPhone = String(formData.get('cliente_telefono') || '');
+    const digitsOnly = rawPhone.replace(/\D/g, ''); // Extrae solo números
+
+    // Verifica que haya correo y al menos 6 números en el teléfono
+    if (!email || digitsOnly.length < 6) {
+      showAlert('Falta número de teléfono o correo', 'error');
+      return;
+    }
+
     setIsSending(true);
 
-    if (form.current) {
-      emailjs.sendForm(
+    emailjs
+      .sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(() => {
-        setAlert({ show: true, message: t('contacto.alert_success'), type: 'success' });
+        showAlert(t('contacto.alert_success'), 'success');
         form.current?.reset();
       })
       .catch((error) => {
         console.error('EmailJS Error:', error);
-        setAlert({ show: true, message: t('contacto.alert_error'), type: 'error' });
+        showAlert(t('contacto.alert_error'), 'error');
       })
       .finally(() => {
         setIsSending(false);
-        setTimeout(() => setAlert(prev => ({ ...prev, show: false })), 5000);
       });
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digits = e.target.value.replace(/\D/g, '');
+    if (!e.target.value.trim() || digits.length < 6) {
+      e.target.setCustomValidity('Falta número de teléfono o correo (mínimo 6 números)');
+    } else {
+      e.target.setCustomValidity('');
     }
   };
 
-  const inputStyle = "w-full p-3 rounded-xl bg-[#0F0F0F] border border-white/20 focus:border-white focus:ring-1 focus:ring-white/30 outline-none transition-all text-white placeholder-gray-500";
-  const labelStyle = "flex items-center gap-2 text-[11px] font-black text-gray-300 mb-2 ml-1 uppercase tracking-[0.2em]";
-  const cardStyle = "bg-[#18181B] p-8 rounded-3xl border border-white/10 shadow-[0_0_50px_-12px_rgba(0,0,0,0.8)]";
+  const handlePhoneInvalid = (e: React.InvalidEvent<HTMLInputElement>) => {
+    const digits = e.target.value.replace(/\D/g, '');
+    if (!e.target.value.trim() || digits.length < 6) {
+      e.target.setCustomValidity('Falta número de teléfono o correo (mínimo 6 números)');
+    } else {
+      e.target.setCustomValidity('');
+    }
+  };
+
+  const handleEmailInvalid = (e: React.InvalidEvent<HTMLInputElement>) => {
+    if (!e.target.value.trim()) {
+      e.target.setCustomValidity('Falta número de teléfono o correo');
+    } else {
+      e.target.setCustomValidity('');
+    }
+  };
+
+  const inputStyle =
+    "w-full p-3 rounded-xl bg-[#0F0F0F] border border-white/20 focus:border-white focus:ring-1 focus:ring-white/30 outline-none transition-all text-white placeholder-gray-500";
+  const labelStyle =
+    "flex items-center gap-2 text-[11px] font-black text-gray-300 mb-2 ml-1 uppercase tracking-[0.2em]";
+  const cardStyle =
+    "bg-[#18181B] p-8 rounded-3xl border border-white/10 shadow-[0_0_50px_-12px_rgba(0,0,0,0.8)]";
 
   return (
     <>
@@ -62,10 +108,15 @@ const Contacto = () => {
           </div>
 
           {alert.show && (
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               className={`mb-8 p-4 rounded-xl text-center font-bold uppercase tracking-widest text-xs border ${
-                alert.type === 'success' ? 'bg-green-500/10 border-green-500 text-green-500' : 'bg-red-500/10 border-red-500 text-red-500'
-              }`}>
+                alert.type === 'success'
+                  ? 'bg-green-500/10 border-green-500 text-green-500'
+                  : 'bg-red-500/10 border-red-500 text-red-500'
+              }`}
+            >
               {alert.message}
             </motion.div>
           )}
@@ -97,9 +148,34 @@ const Contacto = () => {
                   <h3 className="text-white text-sm font-bold flex items-center gap-2 uppercase tracking-widest border-b border-white/5 pb-4">
                     <User size={18} className="text-accent" /> {t('contacto.cliente_titulo')}
                   </h3>
-                  <input type="text" name="cliente_nombre" placeholder={t('contacto.nombre_placeholder')} required className={inputStyle} />
-                  <input type="email" name="cliente_email" placeholder={t('contacto.email_placeholder')} required className={inputStyle} />
-                  <input type="tel" name="cliente_telefono" placeholder={t('contacto.tel_placeholder')} required className={inputStyle} />
+                  <input
+                    type="text"
+                    name="cliente_nombre"
+                    placeholder={t('contacto.nombre_placeholder')}
+                    required
+                    className={inputStyle}
+                  />
+                  <input
+                    type="email"
+                    name="cliente_email"
+                    placeholder={t('contacto.email_placeholder')}
+                    required
+                    onInvalid={handleEmailInvalid}
+                    onInput={(e) => (e.target as HTMLInputElement).setCustomValidity('')}
+                    className={inputStyle}
+                  />
+                  <input
+                    type="tel"
+                    name="cliente_telefono"
+                    placeholder={t('contacto.tel_placeholder')}
+                    required
+                    minLength={6}
+                    pattern="(?=(?:.*\d){6,}).*"
+                    inputMode="tel"
+                    onChange={handlePhoneChange}
+                    onInvalid={handlePhoneInvalid}
+                    className={inputStyle}
+                  />
                 </div>
                 <div className="space-y-6">
                   <h3 className="text-white text-sm font-bold flex items-center gap-2 uppercase tracking-widest border-b border-white/5 pb-4">
@@ -109,8 +185,18 @@ const Contacto = () => {
                     <input type="number" name="pasajeros_cantidad" placeholder={t('contacto.pax_placeholder')} className={inputStyle} />
                     <input type="text" name="valijas" placeholder={t('contacto.valijas_placeholder')} className={inputStyle} />
                   </div>
-                  <input type="text" name="pasajeros_nombres" placeholder={t('contacto.acompanantes_placeholder')} className={inputStyle} />
-                  <input type="text" name="pasajeros_notas" placeholder={t('contacto.notas_pax_placeholder')} className={inputStyle} />
+                  <input
+                    type="text"
+                    name="pasajeros_nombres"
+                    placeholder={t('contacto.acompanantes_placeholder')}
+                    className={inputStyle}
+                  />
+                  <input
+                    type="text"
+                    name="pasajeros_notas"
+                    placeholder={t('contacto.notas_pax_placeholder')}
+                    className={inputStyle}
+                  />
                 </div>
               </div>
             </div>
@@ -120,33 +206,55 @@ const Contacto = () => {
                 <MapPin size={18} className="text-accent" /> {t('contacto.itinerario_titulo')}
               </h3>
               <div className="grid md:grid-cols-2 gap-6 mb-6">
-                <input type="text" name="ruta_inicio" placeholder={t('contacto.inicio_placeholder')} required className={inputStyle} />
-                <input type="text" name="ruta_destino" placeholder={t('contacto.destino_placeholder')} required className={inputStyle} />
+                <input
+                  type="text"
+                  name="ruta_inicio"
+                  placeholder={t('contacto.inicio_placeholder')}
+                  required
+                  className={inputStyle}
+                />
+                <input
+                  type="text"
+                  name="ruta_destino"
+                  placeholder={t('contacto.destino_placeholder')}
+                  required
+                  className={inputStyle}
+                />
               </div>
               <div className="grid md:grid-cols-2 gap-6">
-                 <input type="text" name="vuelo" placeholder={t('contacto.vuelo_placeholder')} className={inputStyle} />
-                 <div className="flex items-center gap-6 bg-black/40 p-3 rounded-xl border border-white/5 justify-around">
-                    <label className="flex items-center gap-2 cursor-pointer group">
-                      <input type="checkbox" name="butaca_infantil" value="Sí" className="w-4 h-4 accent-white" />
-                      <span className="text-xs text-gray-400 group-hover:text-white transition-colors">{t('contacto.butaca')}</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer group">
-                      <input type="checkbox" name="cartel_recepcion" value="Sí" className="w-4 h-4 accent-white" />
-                      <span className="text-xs text-gray-400 group-hover:text-white transition-colors">{t('contacto.cartel')}</span>
-                    </label>
-                  </div>
+                <input type="text" name="vuelo" placeholder={t('contacto.vuelo_placeholder')} className={inputStyle} />
+                <div className="flex items-center gap-6 bg-black/40 p-3 rounded-xl border border-white/5 justify-around">
+                  <label className="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="butaca_infantil" value="Sí" className="w-4 h-4 accent-white" />
+                    <span className="text-xs text-gray-400 group-hover:text-white transition-colors">{t('contacto.butaca')}</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="cartel_recepcion" value="Sí" className="w-4 h-4 accent-white" />
+                    <span className="text-xs text-gray-400 group-hover:text-white transition-colors">{t('contacto.cartel')}</span>
+                  </label>
+                </div>
               </div>
             </div>
 
             <div className="space-y-4">
-              <label className={labelStyle}><ClipboardList size={14}/> {t('contacto.observaciones_label')}</label>
-              <textarea name="message" rows={4} className={inputStyle + " resize-none"} placeholder={t('contacto.observaciones_placeholder')} />
+              <label className={labelStyle}>
+                <ClipboardList size={14} /> {t('contacto.observaciones_label')}
+              </label>
+              <textarea
+                name="message"
+                rows={4}
+                className={inputStyle + " resize-none"}
+                placeholder={t('contacto.observaciones_placeholder')}
+              />
             </div>
 
-            <button type="submit" disabled={isSending}
+            <button
+              type="submit"
+              disabled={isSending}
               className={`w-full py-6 rounded-2xl text-sm font-black uppercase tracking-[0.5em] transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] active:scale-[0.98] ${
                 isSending ? 'bg-zinc-700 text-zinc-400 cursor-not-allowed' : 'bg-white text-black hover:bg-zinc-200'
-              }`}>
+              }`}
+            >
               {isSending ? t('contacto.btn_enviando') : t('contacto.btn_generar')}
             </button>
           </form>
